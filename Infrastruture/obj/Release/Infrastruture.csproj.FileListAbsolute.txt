@@ -1,0 +1,7 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\bin\Release\Infrastruture.dll.config
+D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\bin\Release\Infrastruture.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\bin\Release\Infrastruture.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\obj\Release\Infrastruture.csproj.CoreCompileInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\obj\Release\Infrastruture.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\obj\Release\Infrastruture.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\obj\Release\Infrastruture.csprojResolveAssemblyReference.cache

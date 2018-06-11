@@ -1,0 +1,10 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\bin\Debug\Apps.CodeHelper.exe.config
+D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\bin\Debug\Apps.CodeHelper.exe
+D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\bin\Debug\Apps.CodeHelper.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.CodeFrom.resources
+D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.Properties.Resources.resources
+D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.csproj.GenerateResource.Cache
+D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.csproj.CoreCompileInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.exe
+D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.csprojResolveAssemblyReference.cache

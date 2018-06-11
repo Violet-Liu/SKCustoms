@@ -1,0 +1,14 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\obj\Debug\MessageMQ.Adapter.csproj.CoreCompileInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\bin\Debug\MessageMQ.Adapter.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\bin\Debug\MessageMQ.Adapter.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\bin\Debug\Apache.NMS.ActiveMQ.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\bin\Debug\Apache.NMS.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\bin\Debug\log4net.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\bin\Debug\Apache.NMS.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\bin\Debug\Apache.NMS.xml
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\bin\Debug\Apache.NMS.ActiveMQ.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\bin\Debug\Apache.NMS.ActiveMQ.xml
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\bin\Debug\log4net.xml
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\obj\Debug\MessageMQ.Adapter.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\obj\Debug\MessageMQ.Adapter.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\MessageMQ.Adapter\obj\Debug\MessageMQ.Adapter.csprojResolveAssemblyReference.cache
