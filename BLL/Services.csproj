@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7DAA7365-2177-4C5D-BA53-B58358020CF9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Services</RootNamespace>
+    <AssemblyName>Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Apache.NMS, Version=1.7.1.3894, Culture=neutral, PublicKeyToken=82756feee3957618, processorArchitecture=MSIL">
+      <HintPath>..\packages\Apache.NMS.1.7.1\lib\net40\Apache.NMS.dll</HintPath>
+    </Reference>
+    <Reference Include="Apache.NMS.ActiveMQ, Version=1.7.2.4108, Culture=neutral, PublicKeyToken=82756feee3957618, processorArchitecture=MSIL">
+      <HintPath>..\packages\Apache.NMS.ActiveMQ.1.7.2\lib\net40\Apache.NMS.ActiveMQ.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.4\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToExcel, Version=1.11.0.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.8.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.8.8\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.8.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.8.8\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=3.3.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.4\lib\net45\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.2.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.4\lib\net45\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.8.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.4\lib\net45\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.5.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.4\lib\net45\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.1.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.4\lib\net45\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.1.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.4\lib\net45\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.4\lib\net45\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoMapperConfiguration.cs" />
+    <Compile Include="BulkOperation.cs" />
+    <Compile Include="Cache.cs" />
+    <Compile Include="DTOs\AlarmDTO.cs" />
+    <Compile Include="DTOs\BaseEntityDOT.cs" />
+    <Compile Include="DTOs\CaptureDTO.cs" />
+    <Compile Include="DTOs\LayoutDTO.cs" />
+    <Compile Include="DTOs\RecordManagerDTO.cs" />
+    <Compile Include="DTOs\SysErrorLogDTO.cs" />
+    <Compile Include="DTOs\SysModuleDTO.cs" />
+    <Compile Include="DTOs\SysModuleOperateDTO.cs" />
+    <Compile Include="DTOs\SysModuleOperateIndexDTO.cs" />
+    <Compile Include="DTOs\SysRightOperateDTO.cs" />
+    <Compile Include="DTOs\SysRoleDTO.cs" />
+    <Compile Include="DTOs\SysUserConfigDTO.cs" />
+    <Compile Include="DTOs\SysUserDTO.cs" />
+    <Compile Include="Implementations\Items\AlarmService.cs" />
+    <Compile Include="Implementations\Items\CaptureService.cs" />
+    <Compile Include="Implementations\Items\CarColorService.cs" />
+    <Compile Include="Implementations\Items\CarTypeService.cs" />
+    <Compile Include="Implementations\Items\LayoutService.cs" />
+    <Compile Include="Implementations\Items\RecordManagerService.cs" />
+    <Compile Include="Implementations\Sys\RecordMGradeService.cs" />
+    <Compile Include="Implementations\Sys\SysModuleOperateService.cs" />
+    <Compile Include="Implementations\Sys\AccountService.cs" />
+    <Compile Include="Implementations\Sys\SysConfigService.cs" />
+    <Compile Include="Implementations\Sys\SysErrorLogService.cs" />
+    <Compile Include="Implementations\Sys\SysModuleService.cs" />
+    <Compile Include="Implementations\Sys\SysRightOperatorService.cs" />
+    <Compile Include="Implementations\Sys\SysRightService.cs" />
+    <Compile Include="Implementations\Sys\SysRoleService.cs" />
+    <Compile Include="Implementations\Sys\SysUserConfigService.cs" />
+    <Compile Include="Implementations\Sys\SysUserService.cs" />
+    <Compile Include="Interfaces\Items\IAlarmService.cs" />
+    <Compile Include="Interfaces\Items\ICaptureService.cs" />
+    <Compile Include="Interfaces\Items\ICarColorService.cs" />
+    <Compile Include="Interfaces\Items\ICarTypeService.cs" />
+    <Compile Include="Interfaces\Items\ILayoutService.cs" />
+    <Compile Include="Interfaces\Items\IRecordManagerService.cs" />
+    <Compile Include="Interfaces\Sys\IRecordMGradeService.cs" />
+    <Compile Include="Interfaces\Sys\ISysModuleOperateService.cs" />
+    <Compile Include="Interfaces\Sys\ISysRightOperatorService.cs" />
+    <Compile Include="Interfaces\Sys\ISysRightService.cs" />
+    <Compile Include="Interfaces\Sys\ISysModuleService.cs" />
+    <Compile Include="Interfaces\Sys\ISysRoleService.cs" />
+    <Compile Include="Interfaces\Sys\ISysUserService.cs" />
+    <Compile Include="Interfaces\Sys\IAccountService.cs" />
+    <Compile Include="Interfaces\Sys\ISysErrorLogService.cs" />
+    <Compile Include="Mapping\MapperHelper.cs" />
+    <Compile Include="Model\Dock.cs" />
+    <Compile Include="Model\LayoutExModel.cs" />
+    <Compile Include="Model\PushAlarmMessage.cs" />
+    <Compile Include="Model\Request.cs" />
+    <Compile Include="Model\Response.cs" />
+    <Compile Include="MySqlHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{d24cfad9-d47f-45b4-8642-eabf1fcf8e1b}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastruture\Infrastruture.csproj">
+      <Project>{702abc3b-00a3-49b4-bf92-26588548660d}</Project>
+      <Name>Infrastruture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Domain.csproj">
+      <Project>{13363eed-aa03-4067-9397-2a7fd71c43a6}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repostories\Repostories.csproj">
+      <Project>{2faf6615-b1d5-4250-895f-5e99e7dc7256}</Project>
+      <Name>Repostories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MQ\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
