@@ -8,3 +8,13 @@ D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.c
 D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.exe
 D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.pdb
 D:\tim\工作内容\蛇口\code\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.csprojResolveAssemblyReference.cache
+E:\SKCustoms\CodeHelper\bin\Debug\Apps.CodeHelper.exe.config
+E:\SKCustoms\CodeHelper\bin\Debug\Apps.CodeHelper.exe
+E:\SKCustoms\CodeHelper\bin\Debug\Apps.CodeHelper.pdb
+E:\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.csprojAssemblyReference.cache
+E:\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.CodeFrom.resources
+E:\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.Properties.Resources.resources
+E:\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.csproj.GenerateResource.cache
+E:\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.csproj.CoreCompileInputs.cache
+E:\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.exe
+E:\SKCustoms\CodeHelper\obj\Debug\Apps.CodeHelper.pdb

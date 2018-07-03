@@ -1,0 +1,14 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\EncryptHelper\bin\Release\Apps.EncryptHelper.exe.config
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\EncryptHelper\bin\Release\Apps.EncryptHelper.exe.manifest
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\EncryptHelper\bin\Release\Apps.EncryptHelper.application
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\EncryptHelper\bin\Release\Apps.EncryptHelper.exe
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\EncryptHelper\bin\Release\Apps.EncryptHelper.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\Apps.EncryptHelper\Release\Apps.EncryptHelper.csprojResolveAssemblyReference.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\Apps.EncryptHelper\Release\Apps.EncryptHelper.Encrypt.resources
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\Apps.EncryptHelper\Release\Apps.EncryptHelper.Properties.Resources.resources
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\Apps.EncryptHelper\Release\Apps.EncryptHelper.csproj.GenerateResource.Cache
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\Apps.EncryptHelper\Release\Apps.EncryptHelper.csproj.CoreCompileInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\Apps.EncryptHelper\Release\Apps.EncryptHelper.exe.manifest
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\Apps.EncryptHelper\Release\Apps.EncryptHelper.application
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\Apps.EncryptHelper\Release\Apps.EncryptHelper.exe
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\Apps.EncryptHelper\Release\Apps.EncryptHelper.pdb

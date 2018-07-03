@@ -7,6 +7,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using Common;
 
 namespace MessageMQ.Adapter
 {
@@ -166,13 +167,18 @@ namespace MessageMQ.Adapter
         /// <exception cref="System.NotImplementedException"></exception>
         public override int SendMessage<T>(T t, string queneName)
         {
+            return SendMessage<T>(t, queneName, "");
+        }
+
+        public override int SendMessage<T>(T t, string queneName, string selector = "")
+        {
             int flag = 0;
             TryCatchGeneralExceptionWrapper(() =>
             {
                 if (!IsConnected)
                     IsConnected = ReConnect();
 
-                ProductMessageProcess<T>(session, t, queneName);
+                ProductMessageProcess<T>(session, t, queneName, selector);
                 flag = 1;
 
                 connection.Stop();
@@ -208,11 +214,20 @@ namespace MessageMQ.Adapter
         /// </summary>
         public override void ReceviceListener<T>()
         {
+            ReceviceListener<T>("");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="selector">filter='demo'</param>
+        public override void ReceviceListener<T>(string selector)
+        {
             if (!IsConnected)
                 IsConnected = ReConnect();
 
-            ConsumeMessageByListener(session, OnMessageListener, needReleaseResource: false);
-
+            ConsumeMessageByListener(session, OnMessageListener,selector, needReleaseResource: false);
         }
 
         /// <summary>
@@ -269,7 +284,7 @@ namespace MessageMQ.Adapter
                         log.DebugFormat("Current MQ connection status: {0}", IsConnected);
                         log.DebugFormat("准备第{0}次重新CreateConnection()", retryCount);
                         retryCount++;
-                        Thread.Sleep(MyMQConfig.Interval);
+                        Thread.Sleep(2000);
                         fromRetryflag = true;
                         //递归
                         connection = CreateConnectionForListener(clientId, factory);
@@ -376,15 +391,15 @@ namespace MessageMQ.Adapter
         /// </param>
         /// <typeparam name="T">
         /// </typeparam>
-        private static void ProductMessageProcess<T>(ISession session, T t, string queueName)
+        private static void ProductMessageProcess<T>(ISession session, T t, string queueName,string selector)
         {
             if (t is string)
             {
-                SendText(session, t as string);
+                SendText(session, t as string, queueName, selector);
             }
             else
             {
-                SendObject(session, t, queueName);
+                SendObject(session, t, queueName,selector);
             }
         }
 
@@ -399,7 +414,7 @@ namespace MessageMQ.Adapter
         /// </param>
         /// <typeparam name="T">
         /// </typeparam>
-        private static void SendObject<T>(ISession session, T t, string queueName)
+        private static void SendObject<T>(ISession session, T t, string queueName, string selector)
         {
             //4.消息的目的地：destination
             IDestination dest = session.GetQueue(queueName);
@@ -410,7 +425,15 @@ namespace MessageMQ.Adapter
             {
                 log.DebugFormat("ActiveMQ创建: {0}", producer.ToString());
                 var objectMessage = producer.CreateObjectMessage(t);
+                if (!string.IsNullOrEmpty(selector))
+                {
+                    var arr = selector.Split('=');
+                    if (!arr.IsNullOrEmpty() && arr.Length == 2)
+                    {
+                        objectMessage.Properties.SetString(arr[0], arr[1].Replace("'", "").Replace("'", ""));
+                    }
 
+                }
                 producer.Send(objectMessage);
                 log.DebugFormat("ActiveMQ已发送: {0}", objectMessage.ToString());
             }
@@ -427,7 +450,7 @@ namespace MessageMQ.Adapter
         /// </param>
         /// <exception cref="ArgumentNullException">
         /// </exception>
-        private static void SendText(ISession session, string text)
+        private static void SendText(ISession session, string text,string queueName, string selector)
         {
             if (string.IsNullOrEmpty(text))
             {
@@ -435,11 +458,19 @@ namespace MessageMQ.Adapter
             }
 
             // Create the Producer for the topic/queue   
-            IMessageProducer prod = session.CreateProducer(new ActiveMQTopic("testing"));
+            IMessageProducer prod = session.CreateProducer(new ActiveMQTopic(queueName));
 
             ITextMessage msg = prod.CreateTextMessage();
             msg.Text = text;
-            Console.WriteLine("Sending: " + text);
+            if(!string.IsNullOrEmpty(selector))
+            {
+                var arr = selector.Split('=');
+                if (!arr.IsNullOrEmpty() && arr.Length == 2)
+                {
+                    msg.Properties.SetString(arr[0], arr[1].Replace("'", "").Replace("'", ""));
+                }
+
+            }
             prod.Send(msg, MsgDeliveryMode.NonPersistent, MsgPriority.Normal, TimeSpan.MinValue);
         }
 
@@ -449,9 +480,9 @@ namespace MessageMQ.Adapter
         /// <param name="session">
         /// The session.
         /// </param>
-        private void ConsumeMessageByListener(ISession session, MessageListener mylistener)
+        private void ConsumeMessageByListener(ISession session,string selector, MessageListener mylistener)
         {
-            ConsumeMessageByListener(session, mylistener, true);
+            ConsumeMessageByListener(session, mylistener,selector, true);
         }
 
 
@@ -462,7 +493,7 @@ namespace MessageMQ.Adapter
         /// <param name="session">The session.</param>
         /// <param name="mylistener">The mylistener.</param>
         /// <param name="needReleaseResource">if set to <c>true</c> [need release resource].</param>
-        private void ConsumeMessageByListener(ISession session, MessageListener mylistener, bool needReleaseResource)
+        private void ConsumeMessageByListener(ISession session, MessageListener mylistener,string selector, bool needReleaseResource)
         {
             // Create the Consumer  4.消息的目的地：destination
             dest = session.GetQueue(QUEUE_DESTINATION);
@@ -480,7 +511,10 @@ namespace MessageMQ.Adapter
             }
             else
             {
-                consumer = session.CreateConsumer(dest);
+                if (string.IsNullOrEmpty(selector))
+                    consumer = session.CreateConsumer(dest);
+                else
+                    consumer = session.CreateConsumer(dest, selector);
                 log.DebugFormat("ActiveMQ创建: {0}", consumer.ToString());
                 consumer.Listener += mylistener;
                 log.Debug("不释放资源模式 ：开始 MQ Listener监听ing");
@@ -515,10 +549,6 @@ namespace MessageMQ.Adapter
                         targetObject = objectMessage.Body as T;
                         list.Add(targetObject);
                     }
-                    else
-                    {
-                        Console.WriteLine("Object Message is null");
-                    }
                 }
             }
 
@@ -535,7 +565,6 @@ namespace MessageMQ.Adapter
             try
             {
                 ITextMessage msg = (ITextMessage)message;
-                Console.WriteLine("Receive: " + msg.Text);
             }
             catch (Exception e)
             {
@@ -595,5 +624,7 @@ namespace MessageMQ.Adapter
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }

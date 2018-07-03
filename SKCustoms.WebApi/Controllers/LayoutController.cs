@@ -25,6 +25,11 @@ namespace SKCustoms.WebApi.Controllers
         [Route("add_one")]
         public Resp_Binary Add_One(LayoutDTO model) => _service.Add_One(model);
 
+
+        [HttpPost]
+        [Route("add")]
+        public Resp_Binary Add(Req_Layout_Add request) => _service.Add(request);
+
         [HttpPost]
         [Route("add_batch")]
         public Resp_Binary Add_Batch(List<LayoutDTO> models) => _service.Add_Batch(models);

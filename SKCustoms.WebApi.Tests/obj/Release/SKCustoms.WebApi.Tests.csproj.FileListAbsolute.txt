@@ -1,0 +1,1 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\SKCustoms.WebApi.Tests\obj\Release\SKCustoms.WebApi.Tests.csproj.CoreCompileInputs.cache

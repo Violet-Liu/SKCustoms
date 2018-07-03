@@ -29,5 +29,9 @@ namespace SKCustoms.WebApi.Controllers
         [Route("index")]
         [HttpPost]
         public Resp_Index<CaptureDTO> Index(Req_Index request) => _service.Index(request);
+
+        [Route("getbyId")]
+        [HttpGet]
+        public CaptureDTO GetById(int id) => _service.GetById(id);
     }
 }

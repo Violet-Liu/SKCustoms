@@ -55,6 +55,9 @@ namespace Common
             get => System.Configuration.ConfigurationManager.AppSettings["destination"].ToString();
         }
 
-
+        public static int SleepTime
+        {
+            get => System.Configuration.ConfigurationManager.AppSettings["sleepTime"].ToInt();
+        }
     }
 }

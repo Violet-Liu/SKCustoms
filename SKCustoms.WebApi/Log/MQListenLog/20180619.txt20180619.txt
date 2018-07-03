@@ -1,0 +1,12 @@
+日志时间：2018-06-19 17:42:42,157 
+日志级别：INFO   
+日志内容：注册监听MQ事件
+
+日志时间：2018-06-19 17:42:42,170 
+日志级别：INFO   
+日志内容：监听完成
+
+日志时间：2018-06-19 17:42:42,720 
+日志级别：INFO   
+日志内容：Broker: localhost - Client: MQtesting listener already connected from tcp://0:0:0:0:0:0:0:1:51974
+

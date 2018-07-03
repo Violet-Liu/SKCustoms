@@ -13,7 +13,8 @@ namespace SKCustoms.WebApi
         public static void Register(HttpConfiguration config)
         {
             var allowedOrigin = ConfigurationManager.AppSettings["cors:allowedOrigin"] ?? "localhost:8080";
-            config.EnableCors(new EnableCorsAttribute("*", "*", "*") { SupportsCredentials = true});
+            //config.EnableCors(new EnableCorsAttribute("*", "*", "*") { SupportsCredentials = true });
+            //GlobalConfiguration.Configuration.EnableCors(new EnableCorsAttribute("*", "*", "*") { SupportsCredentials = true });
 
             config.MapHttpAttributeRoutes();
             config.Filters.Add(new JsonCallbackAttribute());

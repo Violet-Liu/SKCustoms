@@ -71,5 +71,11 @@ namespace Services
         /// 分级
         /// </summary>
         public string RecordMGrade { get; set; }
+
+        public int IsValid { get; set; } = 1;
+
+        public string Channel { get; set; }
+
+
     }
 }

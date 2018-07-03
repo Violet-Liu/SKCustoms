@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActiveMQAdapter.cs" />
     <Compile Include="ActiveMQListenAdapter.cs" />
     <Compile Include="Config\BaseConfig.cs" />
     <Compile Include="Config\MQConfig.cs" />

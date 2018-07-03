@@ -20,15 +20,17 @@ namespace SKCustoms.WebApi
         {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            
-            
+
+            log4net.Config.XmlConfigurator.Configure();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer<SKContext>(new Initializer());
             DbInterception.Add(new EFIntercepterLogging());
+            
             UnityConfig.RegisterComponentsByWebApi();
             AutoMapperConfiguration.ConfigurationAutoMapper();   // 初始化AutoMapper对象投影
+            JobScheduler.Start();
             //GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
         }
 

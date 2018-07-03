@@ -26,7 +26,7 @@ namespace MessageMQ.Adapter
         /// <returns>
         /// The <see cref="int"/>.
         /// </returns>
-        int SendMessage<T>(T t, string selector = "");
+        int SendMessage<T>(T t);
 
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace MessageMQ.Adapter
         /// <typeparam name="T"></typeparam>
         /// <param name="t">The t.</param>
         /// <returns></returns>
-        int SendMessages<T>(T[] t, string selector = "");
+        int SendMessages<T>(T[] t);
 
         /// <summary>
         /// Sends the message.
@@ -44,9 +44,9 @@ namespace MessageMQ.Adapter
         /// <param name="t">The t.</param>
         /// <param name="queueName">Name of the queue.</param>
         /// <returns></returns>
+        int SendMessage<T>(T t, string queueName);
+
         int SendMessage<T>(T t, string queueName, string selector = "");
-
-
         /// <summary>
         /// Sends the messages.
         /// </summary>
@@ -54,7 +54,7 @@ namespace MessageMQ.Adapter
         /// <param name="t">The t.</param>
         /// <param name="queueName">Name of the queue.</param>
         /// <returns></returns>
-        int SendMessages<T>(T[] t, string queueName, string selector = "");
+        int SendMessages<T>(T[] t, string queueName);
 
         /// <summary>
         /// The recevice message.
@@ -64,12 +64,12 @@ namespace MessageMQ.Adapter
         /// <returns>
         /// The <see cref="T[]"/>.
         /// </returns>
-        T[] ReceviceMessage<T>(string selector = "") where T : class;
+        T[] ReceviceMessage<T>() where T : class;
 
         /// <summary>
         /// The recevice listener.
         /// </summary>
-        void ReceviceListener<T>(string selector = "") where T : class;
+        void ReceviceListener<T>() where T : class;
 
         /// <summary>
         /// Occurs when [mq listener].

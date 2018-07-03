@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKCustoms.Web", "SKCustoms\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKCustoms.WebApi", "SKCustoms.WebApi\SKCustoms.WebApi.csproj", "{0504C4F0-798B-4EA1-9E5C-FC2BE816A99A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageMQ.Adapter", "MessageMQ.Adapter\MessageMQ.Adapter.csproj", "{F9048463-EA49-4997-A6D5-4976944A6D7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{0504C4F0-798B-4EA1-9E5C-FC2BE816A99A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0504C4F0-798B-4EA1-9E5C-FC2BE816A99A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0504C4F0-798B-4EA1-9E5C-FC2BE816A99A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9048463-EA49-4997-A6D5-4976944A6D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9048463-EA49-4997-A6D5-4976944A6D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9048463-EA49-4997-A6D5-4976944A6D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9048463-EA49-4997-A6D5-4976944A6D7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

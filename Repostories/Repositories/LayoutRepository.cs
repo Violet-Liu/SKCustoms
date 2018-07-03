@@ -12,5 +12,11 @@ namespace Repostories
         public LayoutRepository(SKContext unitOfWork) : base(unitOfWork)
         {
         }
+
+        public int SetInValid()
+        {
+            return
+            ((IQueryableUnitOfWork)UnitOfWork).ExecuteCommand($"update layout set IsValid=0 where ValideTime<now() and ValideTime>'1977-01-01 00:00:00';");
+        }
     }
 }

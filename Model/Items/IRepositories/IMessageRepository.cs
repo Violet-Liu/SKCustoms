@@ -8,6 +8,6 @@ namespace Domain
 {
     public interface IMessageRepository
     {
-        bool SendMessage(string message);
+        void SendMessage(string message, string filter = "");
     }
 }

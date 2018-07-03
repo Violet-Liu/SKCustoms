@@ -25,5 +25,7 @@ namespace Services
         public string GUID { get; set; }
 
         public string LetterCode { get; set; }
+
+        public string Channel { get; set; }
     }
 }

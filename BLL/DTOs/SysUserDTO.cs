@@ -31,5 +31,6 @@ namespace Services
 
         public string RoleName { get; set; }
 
+        public string ChannelName { get; set; }
     }
 }

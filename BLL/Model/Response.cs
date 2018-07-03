@@ -18,6 +18,11 @@ namespace Services
             get => new Resp_Binary { message = "添加失败" };
         }
 
+        public static Resp_Binary Add_Repeated
+        {
+            get => new Resp_Binary { message = "该车牌已备案，无须重复添加" };
+        }
+
         public static Resp_Binary Modify_Failed
         {
             get => new Resp_Binary { message = "修改失败" };
@@ -57,6 +62,7 @@ namespace Services
 
     public class Resp_Login_Index
     {
+        public List<SysChannelDTO> syschannels { get; set; }
         public List<SysModule2DTO> sysmodules { get; set; }
     }
 

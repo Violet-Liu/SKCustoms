@@ -134,18 +134,18 @@ namespace SKCustoms.WebApi
 
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            if (actionExecutedContext.Exception.IsNull())
-            {
-                var response = actionExecutedContext.Response.Headers;
-                if (response != null)
-                {
-                    response.Add("Access-Control-Allow-Origin", actionExecutedContext.Request.RequestUri.Authority);
-                    response.Add("Access-Control-Allow-Credentials", "true");
-                    response.Add("Access-Control-Allow-Methods", "*");
-                    response.Add("Access-Control-Allow-Headers", "Content-Type,Access-Token");
-                    response.Add("Access-Control-Expose-Headers", "*");
-                }
-            }
+            //if (actionExecutedContext.Exception.IsNull())
+            //{
+            //    var response = actionExecutedContext.Response.Headers;
+            //    if (response != null)
+            //    {
+            //        response.Add("Access-Control-Allow-Origin", actionExecutedContext.Request.RequestUri.Authority);
+            //        response.Add("Access-Control-Allow-Credentials", "true");
+            //        response.Add("Access-Control-Allow-Methods", "*");
+            //        response.Add("Access-Control-Allow-Headers", "Content-Type,Access-Token");
+            //        response.Add("Access-Control-Expose-Headers", "*");
+            //    }
+            //}
             base.OnActionExecuted(actionExecutedContext);
         }
     }

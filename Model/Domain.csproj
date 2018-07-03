@@ -58,6 +58,7 @@
     <Compile Include="Items\RecordManager.cs" />
     <Compile Include="SYS\IRepositories\IAccountRepository.cs" />
     <Compile Include="SYS\IRepositories\IRecordMGradeRepository.cs" />
+    <Compile Include="SYS\IRepositories\ISysChannelRepository.cs" />
     <Compile Include="SYS\IRepositories\ISysErrorLogRepository.cs" />
     <Compile Include="SYS\IRepositories\ISysModuleOperateRepository.cs" />
     <Compile Include="SYS\IRepositories\ISysModuleRepository.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="SYS\IRepositories\ISysUserConfigRepository.cs" />
     <Compile Include="SYS\IRepositories\ISysUserRepository.cs" />
     <Compile Include="SYS\RecordMGrade.cs" />
+    <Compile Include="SYS\SysChannel.cs" />
     <Compile Include="SYS\SysConfigModel.cs" />
     <Compile Include="SYS\SysErrorLog.cs" />
     <Compile Include="SYS\SysModule.cs" />

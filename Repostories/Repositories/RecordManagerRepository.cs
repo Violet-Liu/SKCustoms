@@ -23,5 +23,11 @@ namespace Repostories
                                                                     (SELECT id FROM recordmanager WHERE CarNumber in (select CarNumber FROM recordmanager group by CarNumber having count(CarNumber)>1) 
                                                                     and id not in (select max(id) from recordmanager group by CarNumber having count(CarNumber)>1)) AS a);");
         }
+
+        public int SetInValid()
+        {
+            return 
+            ((IQueryableUnitOfWork)UnitOfWork).ExecuteCommand($"update recordmanager set IsValid=0 where ValideTime<now() and ValideTime>'1977-01-01 00:00:00';");
+        }
     }
 }

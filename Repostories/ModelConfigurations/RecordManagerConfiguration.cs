@@ -24,6 +24,8 @@ namespace Repostories.ModelConfigurations
             Property(o => o.Contact).HasColumnType("VARCHAR").HasMaxLength(200);
             Property(o => o.Organization).HasColumnType("VARCHAR").HasMaxLength(500);
             Property(o => o.RecordMGrade).HasColumnType("VARCHAR").HasMaxLength(200);
+            Property(o => o.Channel).HasColumnType("VARCHAR").HasMaxLength(200);
+            HasIndex(o => o.Channel);
         }
     }
 }

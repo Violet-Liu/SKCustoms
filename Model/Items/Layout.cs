@@ -30,5 +30,7 @@ namespace Domain
         /// 布控程度 0：代表无限次数 1 代表一次中控，中控完该数据无效
         /// </summary>
         public int Degree { get; set; }
+
+        public string Channel { get; set; }
     }
 }

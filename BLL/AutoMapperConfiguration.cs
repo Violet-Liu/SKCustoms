@@ -40,16 +40,18 @@ namespace Services
                     .ForMember(dest => dest.LastInTime, opt => opt.MapFrom(src => src.LastInTime > minDt ? src.LastInTime.ToString() : ""))
                     .ForMember(dest => dest.LastOutTime, opt => opt.MapFrom(src => src.LastOutTime > minDt ? src.LastOutTime.ToString() : ""))
                     .ForMember(dest => dest.ValideTime, opt => opt.MapFrom(src => src.ValideTime > minDt ? src.ValideTime.ToString() : ""))
-                    .ForMember(dest => dest.RecordMGrade, opt => opt.MapFrom(src => src.RecordMGrade));
+                    .ForMember(dest => dest.RecordMGrade, opt => opt.MapFrom(src => src.RecordMGrade))
+                    .ForMember(dest => dest.Channel, opt => opt.MapFrom(src => src.Channel));
 
                 cfg.CreateMap<RecordManagerDTO, RecordManager>()
                     .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToLong()))
                     .ForMember(dest => dest.Type, opt => opt.MapFrom(src => (int)Enum.Parse(typeof(RecordManagerTypeEnum), src.Type)))
                     .ForMember(dest => dest.CreateTime, opt => opt.MapFrom(src => src.CreateTime.ToDateTime()))
                     .ForMember(dest => dest.SysUserId, opt => opt.MapFrom(src => src.SysUserId.ToInt()))
-                    .ForMember(dest=>dest.LastInTime,opt=>opt.MapFrom(src=>string.IsNullOrEmpty(src.LastInTime)? dt : src.LastInTime.ToDateTime()))
-                    .ForMember(dest=>dest.LastOutTime,opt=>opt.MapFrom(src=>string.IsNullOrEmpty(src.LastOutTime)?dt:src.LastOutTime.ToDateTime()))
-                    .ForMember(dest=>dest.ValideTime,opt=>opt.MapFrom(src=>string.IsNullOrEmpty(src.ValideTime)?dt:src.ValideTime.ToDateTime()));
+                    .ForMember(dest => dest.LastInTime, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.LastInTime) ? dt : src.LastInTime.ToDateTime()))
+                    .ForMember(dest => dest.LastOutTime, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.LastOutTime) ? dt : src.LastOutTime.ToDateTime()))
+                    .ForMember(dest => dest.ValideTime, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.ValideTime) ? dt : src.ValideTime.ToDateTime()))
+                    .ForMember(dest => dest.Channel, opt => opt.MapFrom(src => src.Channel));
 
                 cfg.CreateMap<Capture, CaptureDTO>()
                     .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToString()))
@@ -63,20 +65,22 @@ namespace Services
                     .ForMember(dest => dest.Pass, opt => opt.MapFrom(src => src.Pass.ToInt()))
                     .ForMember(dest => dest.CreateTime, opt => opt.MapFrom(src => src.CreateTime.ToDateTime()));
 
-                cfg.CreateMap<Layout,LayoutDTO>()
+                cfg.CreateMap<Layout, LayoutDTO>()
                     .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToString()))
                     .ForMember(dest => dest.CreateTime, opt => opt.MapFrom(src => src.CreateTime.ToString()))
                     .ForMember(dest => dest.SysUserId, opt => opt.MapFrom(src => src.SysUserId.ToString()))
                     .ForMember(dest => dest.IsValid, opt => opt.MapFrom(src => src.IsValid.ToString()))
-                    .ForMember(dest=>dest.ValideTime,opt=>opt.MapFrom(src=> src.ValideTime > minDt ? src.ValideTime.ToString() : ""));
-                    
+                    .ForMember(dest => dest.ValideTime, opt => opt.MapFrom(src => src.ValideTime > minDt ? src.ValideTime.ToString() : ""))
+                    .ForMember(dest => dest.Channel, opt => opt.MapFrom(src => src.Channel));
 
-                cfg.CreateMap<LayoutDTO,Layout>()
+
+                cfg.CreateMap<LayoutDTO, Layout>()
                     .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToLong()))
                     .ForMember(dest => dest.CreateTime, opt => opt.MapFrom(src => src.CreateTime.ToDateTime()))
                     .ForMember(dest => dest.SysUserId, opt => opt.MapFrom(src => src.SysUserId.ToInt()))
                     .ForMember(dest => dest.IsValid, opt => opt.MapFrom(src => src.IsValid))
-                    .ForMember(dest => dest.ValideTime, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.ValideTime) ? dt : src.ValideTime.ToDateTime()));
+                    .ForMember(dest => dest.ValideTime, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.ValideTime) ? dt : src.ValideTime.ToDateTime()))
+                    .ForMember(dest => dest.Channel, opt => opt.MapFrom(src => src.Channel));
 
                 cfg.CreateMap<Alarm, AlarmDTO>()
                     .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToString()))
@@ -84,13 +88,15 @@ namespace Services
                     .ForMember(dest => dest.AlarmTime, opt => opt.MapFrom(src => src.AlarmTime.ToString()))
                     .ForMember(dest => dest.HandlerTime, opt => opt.MapFrom(src => src.HandlerTime > minDt ? src.HandlerTime.ToString() : ""))
                         .ForMember(dest => dest.IsDeal, opt => opt.MapFrom(src => src.IsDeal.ToString()))
-                        .ForMember(dest => dest.LetterCode, opt => opt.MapFrom(src => AESEncryptHelper.Decrypt(src.LetterCode)));
+                        .ForMember(dest => dest.LetterCode, opt => opt.MapFrom(src => AESEncryptHelper.Decrypt(src.LetterCode)))
+                        .ForMember(dest => dest.Channel, opt => opt.MapFrom(src => src.Channel));
 
                 cfg.CreateMap<AlarmDTO, Alarm>()
                     .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToLong()))
                     .ForMember(dest => dest.CaptureId, opt => opt.MapFrom(src => src.CaptureId.ToLong()))
                     .ForMember(dest => dest.AlarmTime, opt => opt.MapFrom(src => src.AlarmTime.ToDateTime()))
-                    .ForMember(dest => dest.HandlerTime, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.HandlerTime) ? dt : src.HandlerTime.ToDateTime()));
+                    .ForMember(dest => dest.HandlerTime, opt => opt.MapFrom(src => string.IsNullOrEmpty(src.HandlerTime) ? dt : src.HandlerTime.ToDateTime()))
+                    .ForMember(dest => dest.Channel, opt => opt.MapFrom(src => src.Channel));
 
                 cfg.CreateMap<SysRoleDTO, SysRole>()
                     .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToInt()))
@@ -101,6 +107,16 @@ namespace Services
                     .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToString()))
                     .ForMember(dest => dest.Creater, opt => opt.MapFrom(src => src.Creater.ToString()))
                     .ForMember(dest => dest.CreateTime, opt => opt.MapFrom(src => src.CreateTime.ToString()));
+
+                cfg.CreateMap<SysChannel, SysChannelDTO>()
+                    .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToString()))
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToString()))
+                    .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description.ToString()));
+
+                cfg.CreateMap<SysChannelDTO, SysChannel>()
+                    .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToString()))
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToString()))
+                    .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description.ToString()));
 
                 cfg.CreateMap<SysModule, SysModuleDTO>()
                     .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToString()))

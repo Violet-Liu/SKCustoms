@@ -20,7 +20,11 @@ namespace Services
 
         Resp_Binary Assign_Role(SysUser_Assign_Roles request);
 
+        Resp_Binary Assign_Channel(SysUser_Assign_Channels request);
+
         Resp_Index<SysUserDTO> Index(Req_Index request);
+
+        CaptureDTO Popup(string userId);
 
     }
 }

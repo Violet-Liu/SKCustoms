@@ -8,6 +8,8 @@ using Unity.Attributes;
 using Services.Mapping;
 using Common;
 using Infrastructure;
+using Apache.NMS;
+using Apache.NMS.ActiveMQ;
 
 namespace Services
 {
@@ -95,7 +97,8 @@ namespace Services
             var response = new Resp_Query<AlarmDTO>();
             records.ToMaybe()
                 .Do(d => request.Verify())
-                .DoWhen(t => !string.IsNullOrEmpty(request.CarNumber), d => records = records.Where(s => s.CarNumber.Contains(request.CarNumber)));
+                .DoWhen(t => !string.IsNullOrEmpty(request.CarNumber), d => records = records.Where(s => s.CarNumber.Contains(request.CarNumber)))
+                .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => request.Channel.Contains(s.Channel)));
 
 
             if(!string.IsNullOrEmpty(request.IsDeal)&&int.TryParse(request.IsDeal,out int result))

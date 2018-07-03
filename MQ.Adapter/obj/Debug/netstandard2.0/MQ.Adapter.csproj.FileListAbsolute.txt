@@ -1,0 +1,9 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\MQ.Adapter\bin\Debug\netstandard2.0\MQ.Adapter.deps.json
+D:\tim\工作内容\蛇口\code\SKCustoms\MQ.Adapter\bin\Debug\netstandard2.0\MQ.Adapter.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\MQ.Adapter\obj\Debug\netstandard2.0\MQ.Adapter.csprojResolveAssemblyReference.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\MQ.Adapter\obj\Debug\netstandard2.0\MQ.Adapter.csproj.CoreCompileInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\MQ.Adapter\obj\Debug\netstandard2.0\MQ.Adapter.AssemblyInfoInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\MQ.Adapter\obj\Debug\netstandard2.0\MQ.Adapter.AssemblyInfo.cs
+D:\tim\工作内容\蛇口\code\SKCustoms\MQ.Adapter\bin\Debug\netstandard2.0\MQ.Adapter.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\MQ.Adapter\obj\Debug\netstandard2.0\MQ.Adapter.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\MQ.Adapter\obj\Debug\netstandard2.0\MQ.Adapter.pdb

@@ -79,6 +79,7 @@
     <Compile Include="ModelConfigurations\LayoutConfiguration.cs" />
     <Compile Include="ModelConfigurations\RecordManagerConfiguration.cs" />
     <Compile Include="ModelConfigurations\RecordMGradeConfiguration.cs" />
+    <Compile Include="ModelConfigurations\SysChannelConfiguration.cs" />
     <Compile Include="ModelConfigurations\SysErrorLogConfiguration.cs" />
     <Compile Include="ModelConfigurations\SysModuleConfiguration.cs" />
     <Compile Include="ModelConfigurations\SysModuleOperateConfiguration.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Repositories\MessageRepository.cs" />
     <Compile Include="Repositories\RecordManagerRepository.cs" />
     <Compile Include="Repositories\RecordMGradeRepository.cs" />
+    <Compile Include="Repositories\SysChannelRepository.cs" />
     <Compile Include="Repositories\SysErrorLogRepository.cs" />
     <Compile Include="Repositories\SysModuleOperateRepository.cs" />
     <Compile Include="Repositories\SysModuleRepository.cs" />

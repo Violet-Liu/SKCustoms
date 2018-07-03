@@ -71,9 +71,16 @@ namespace Domain
         /// </summary>
         public Nullable<DateTime> ValideTime { get; set; }
 
+        public int IsValid { get; set; }
+
         /// <summary>
         /// 分级
         /// </summary>
         public string RecordMGrade { get; set; }
+
+        /// <summary>
+        /// 行政通道
+        /// </summary>
+        public string Channel { get; set; }
     }
 }

@@ -32,5 +32,6 @@ namespace SKCustoms.WebApi.Controllers
         [HttpPost]
         [Route("index")]
         public Resp_Index<AlarmDTO> Index(Req_Index request) => _service.Index(request);
+
     }
 }

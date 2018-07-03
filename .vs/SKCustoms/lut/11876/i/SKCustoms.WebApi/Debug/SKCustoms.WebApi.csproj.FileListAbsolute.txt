@@ -1,0 +1,8 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi\bin\ApplicationInsights.config
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi\bin\SKCustoms.WebApi.dll.config
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi\bin\SKCustoms.WebApi.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi\bin\SKCustoms.WebApi.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\SKCustoms.WebApi\Debug\SKCustoms.WebApi.csprojResolveAssemblyReference.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\SKCustoms.WebApi\Debug\SKCustoms.WebApi.csproj.CoreCompileInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\SKCustoms.WebApi\Debug\SKCustoms.WebApi.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\SKCustoms.WebApi\Debug\SKCustoms.WebApi.pdb

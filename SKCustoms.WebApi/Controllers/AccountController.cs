@@ -15,6 +15,8 @@ using System.Web.Security;
 using System.Web.Http.Cors;
 using System.Text;
 using System.Net.Http.Headers;
+using Domain;
+using Services.Mapping;
 
 namespace SKCustoms.WebApi.Controllers
 {
@@ -27,6 +29,7 @@ namespace SKCustoms.WebApi.Controllers
 
         [Dependency]
         public ISysRightService _sysRightService { get; set; }
+
 
         [HttpPost]
         [Route("login")]
@@ -93,7 +96,11 @@ namespace SKCustoms.WebApi.Controllers
         {
             var response = new Resp_Login_Index();
             response.sysmodules = _sysRightService.GetRightModuleByUser(request.userId);
-
+            using (var context = new SKContext())
+            {
+                var sysUser = context.SysUsers.SingleOrDefault(t => t.ID == request.userId);
+                response.syschannels = sysUser.SysChannels.ConvertoDto<SysChannel,SysChannelDTO>().ToList();
+            }
             return response;
         }
     }

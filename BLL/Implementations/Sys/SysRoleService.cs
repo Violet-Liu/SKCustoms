@@ -24,7 +24,6 @@ namespace Services
 
         public Resp_Binary Assign_User(SysRole_Assign_Users request)
         {
-
             using (var context = new SKContext())
             {
                 var sysRole = context.SysRoles.Where(t => t.ID == request.RoleId).FirstOrDefault();
@@ -49,10 +48,9 @@ namespace Services
 
                     sysRole.SysUsers = sysUsers;
 
-                    if (context.SaveChanges() > 0)
-                        return Resp_Binary.Modify_Sucess;
-
                 }
+                if (context.SaveChanges() > 0)
+                    return Resp_Binary.Modify_Sucess;
             }
             return Resp_Binary.Modify_Failed;
         }
@@ -140,8 +138,6 @@ namespace Services
                 }
                 f.UserName = UserName.ToString();
             });
-
-
             return response;
         }
 

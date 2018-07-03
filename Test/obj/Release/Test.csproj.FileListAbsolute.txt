@@ -1,0 +1,11 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\bin\Release\Test.exe.config
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\bin\Release\Test.exe
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\bin\Release\Test.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\bin\Release\Common.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\bin\Release\Newtonsoft.Json.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\bin\Release\Common.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\bin\Release\Newtonsoft.Json.xml
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\obj\Release\Test.csprojResolveAssemblyReference.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\obj\Release\Test.csproj.CoreCompileInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\obj\Release\Test.exe
+D:\tim\工作内容\蛇口\code\SKCustoms\Test\obj\Release\Test.pdb

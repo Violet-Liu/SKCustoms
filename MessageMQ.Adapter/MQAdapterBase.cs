@@ -30,7 +30,7 @@ namespace MessageMQ.Adapter
         /// <returns>
         /// The <see cref="int"/>.
         /// </returns>
-        public abstract int SendMessage<T>(T t, string selector = "");
+        public abstract int SendMessage<T>(T t);
 
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace MessageMQ.Adapter
         /// <typeparam name="T"></typeparam>
         /// <param name="t">The t.</param>
         /// <returns></returns>
-        public abstract int SendMessages<T>(T[] t, string selector = "");
+        public abstract int SendMessages<T>(T[] t);
 
         /// <summary>
         /// Sends the message.
@@ -48,7 +48,7 @@ namespace MessageMQ.Adapter
         /// <param name="t">The t.</param>
         /// <param name="queneName">Name of the quene.</param>
         /// <returns></returns>
-        public abstract int SendMessage<T>(T t, string queneName, string selector = "");
+        public abstract int SendMessage<T>(T t, string queneName);
 
 
         /// <summary>
@@ -58,7 +58,9 @@ namespace MessageMQ.Adapter
         /// <param name="t">The t.</param>
         /// <param name="queneName">Name of the quene.</param>
         /// <returns></returns>
-        public abstract int SendMessages<T>(T[] t, string queneName, string selector = "");
+        public abstract int SendMessages<T>(T[] t, string queneName);
+
+        public abstract int SendMessage<T>(T t, string queneName, string selector = "");
 
         /// <summary>
         /// The recevice message.
@@ -68,12 +70,15 @@ namespace MessageMQ.Adapter
         /// <returns>
         /// The <see cref="TEntiy[]"/>.
         /// </returns>
-        public abstract T[] ReceviceMessage<T>(string selector = "") where T : class;
+        public abstract T[] ReceviceMessage<T>() where T : class;
 
         /// <summary>
         /// The recevice listener.
         /// </summary>
-        public abstract void ReceviceListener<T>(string selector = "") where T : class;
+        public abstract void ReceviceListener<T>() where T : class;
+
+
+        public abstract void ReceviceListener<T>(string selector);
 
 
         /// <summary>

@@ -5,3 +5,16 @@ D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\obj\Release\Infrastrutur
 D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\obj\Release\Infrastruture.dll
 D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\obj\Release\Infrastruture.pdb
 D:\tim\工作内容\蛇口\code\SKCustoms\Infrastruture\obj\Release\Infrastruture.csprojResolveAssemblyReference.cache
+F:\SKCustoms\Infrastruture\bin\Release\Infrastruture.dll.config
+F:\SKCustoms\Infrastruture\bin\Release\Infrastruture.dll
+F:\SKCustoms\Infrastruture\bin\Release\Infrastruture.pdb
+F:\SKCustoms\Infrastruture\obj\Release\Infrastruture.csprojResolveAssemblyReference.cache
+F:\SKCustoms\Infrastruture\obj\Release\Infrastruture.csproj.CoreCompileInputs.cache
+F:\SKCustoms\Infrastruture\obj\Release\Infrastruture.dll
+F:\SKCustoms\Infrastruture\obj\Release\Infrastruture.pdb
+E:\SKCustoms\Infrastruture\bin\Release\Infrastruture.dll.config
+E:\SKCustoms\Infrastruture\bin\Release\Infrastruture.dll
+E:\SKCustoms\Infrastruture\bin\Release\Infrastruture.pdb
+E:\SKCustoms\Infrastruture\obj\Release\Infrastruture.csproj.CoreCompileInputs.cache
+E:\SKCustoms\Infrastruture\obj\Release\Infrastruture.dll
+E:\SKCustoms\Infrastruture\obj\Release\Infrastruture.pdb

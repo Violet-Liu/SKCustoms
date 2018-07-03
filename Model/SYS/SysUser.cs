@@ -12,6 +12,7 @@ namespace Domain
         public SysUser()
         {
             SysRoles = new HashSet<SysRole>();
+            SysChannels = new HashSet<SysChannel>();
         }
         public string Pwd { get; set; }
 
@@ -34,5 +35,7 @@ namespace Domain
         public int State { get; set; }
 
         public virtual ICollection<SysRole> SysRoles { get; set; }
+
+        public virtual ICollection<SysChannel> SysChannels { get; set; }
     }
 }

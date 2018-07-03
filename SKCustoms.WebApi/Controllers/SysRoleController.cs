@@ -16,6 +16,7 @@ namespace SKCustoms.WebApi.Controllers
         [Dependency]
         public ISysRoleService _sysRoleService { get; set; }
 
+
         [HttpPost]
         [Route("query")]
         public Resp_Query<SysRoleDTO> Query(SysRole_Query request) => _sysRoleService.Query(request);

@@ -1,0 +1,8 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\Locale\bin\Debug\Locale.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\Locale\bin\Debug\Locale.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\Locale\obj\Debug\Locale.csprojResolveAssemblyReference.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\Locale\obj\Debug\Locale.Resource_CN.resources
+D:\tim\工作内容\蛇口\code\SKCustoms\Locale\obj\Debug\Locale.csproj.GenerateResource.Cache
+D:\tim\工作内容\蛇口\code\SKCustoms\Locale\obj\Debug\Locale.csproj.CoreCompileInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\Locale\obj\Debug\Locale.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\Locale\obj\Debug\Locale.pdb

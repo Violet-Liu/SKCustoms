@@ -11,6 +11,8 @@ using Infrastructure;
 using System.Linq.Expressions;
 using System.Reflection;
 using Repostories;
+using Apache.NMS.ActiveMQ;
+using Apache.NMS;
 
 namespace Services
 {
@@ -51,10 +53,43 @@ namespace Services
 
                     user.SysRoles = sysRoles;
 
-                    if (context.SaveChanges() > 0)
-                        return Resp_Binary.Modify_Sucess;
+                }
+                if (context.SaveChanges() > 0)
+                    return Resp_Binary.Modify_Sucess;
+            }
+            return Resp_Binary.Modify_Failed;
+
+        }
+
+        public Resp_Binary Assign_Channel(SysUser_Assign_Channels request)
+        {
+            using (var context = new SKContext())
+            {
+                var user = context.SysUsers.Where(t => t.ID == request.UserId).FirstOrDefault();
+                if (user.IsNull())
+                    return new Resp_Binary { message = "用户不存在" };
+                user.SysChannels.Clear();
+                if (request.ChannelIds.IsNotNull() && request.ChannelIds.Count > 0)
+                {
+                    MemberInfo member1 = typeof(SysChannel).GetProperty("ID");
+                    ParameterExpression param = Expression.Parameter(typeof(SysChannel), "o");
+                    MemberExpression memberex1 = Expression.MakeMemberAccess(param, member1);
+
+                    var ss = Expression.Equal(Expression.Constant(1), Expression.Constant(2));
+
+                    foreach (var temp in request.ChannelIds)
+                    {
+                        var right = Expression.Equal(memberex1, Expression.Constant(temp));
+                        ss = Expression.OrElse(ss, right);
+                    }
+
+                    var sysChannels = context.SysChannels.Where(Expression.Lambda<Func<SysChannel, bool>>(ss, param)).ToList();
+
+                    user.SysChannels = sysChannels;  
 
                 }
+                if (context.SaveChanges() > 0)
+                    return Resp_Binary.Modify_Sucess;
             }
             return Resp_Binary.Modify_Failed;
 
@@ -159,6 +194,13 @@ namespace Services
                     temp.SysRoles.ToList().ForEach(s => RoleName.Append("[" + s.Name + "]"));
                 }
                 f.RoleName = RoleName.ToString();
+
+                var channelName = new StringBuilder();
+                if (temp.IsNotNull())
+                {
+                    temp.SysChannels.ToList().ForEach(s => channelName.Append("[" + s.Name + "]"));
+                }
+                f.ChannelName = channelName.ToString();
             });
             return response;
 
@@ -201,6 +243,66 @@ namespace Services
 
             return response;
 
+        }
+
+        public CaptureDTO Popup(string userId)
+        {
+            var sysUser = _sysUserRepository.GetById(userId.ToInt());
+            if (sysUser.IsNotNull() && !sysUser.SysChannels.IsNullOrEmpty())
+            {
+                var sb = new StringBuilder();
+                sysUser.SysChannels.ToList().ForEach(t => sb.Append($"or channel='{t.Name}' "));
+
+                var selector = sb.ToString().TrimStart('o', 'r').TrimEnd(' ');
+
+                var rtnJson = string.Empty;
+                IConnectionFactory factory = new ConnectionFactory(ConfigPara.MQIdaddress);
+                //Create the connection
+                using (Apache.NMS.IConnection connection = factory.CreateConnection())
+                {
+                    try
+                    {
+                        connection.ClientId = "SKCustome" + userId;
+                        connection.Start();
+                        //Create the Session
+                        using (ISession session = connection.CreateSession())
+                        {
+                            IMessageConsumer consumer = session.CreateDurableConsumer(new Apache.NMS.ActiveMQ.Commands.ActiveMQTopic("MQMessage"), sysUser.Name, selector, false);
+                            var i = 50;
+                            while (i > 0)
+                            {
+                                ITextMessage msg = (ITextMessage)consumer.Receive(new TimeSpan(1000));
+                                if (msg != null)
+                                {
+                                    rtnJson = msg.Text;
+                                }
+                                i--;
+                            }
+                            consumer.Close();
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        connection.Stop();
+                        connection.Close();
+                    }
+                }
+
+                var capture = rtnJson.ToObject<Capture>();
+                if (capture.IsNotNull())
+                {
+                    if (capture.CreateTime.AddMinutes(2) > DateTime.Now)
+                    {
+                        return capture.ConvertoDto<Capture, CaptureDTO>();
+                    }
+                }
+            }
+
+            return default(CaptureDTO);
         }
     }
 }

@@ -17,6 +17,8 @@ namespace Repostories.ModelConfigurations
             Property(o => o.CarNumber).HasColumnType("VARCHAR").HasMaxLength(200).IsRequired();
             HasIndex(o => o.CarNumber);
             Property(o => o.Description).HasColumnType("text");
+            Property(o => o.Channel).HasColumnType("VARCHAR").HasMaxLength(200);
+            HasIndex(o => o.Channel);
 
         }       
     }

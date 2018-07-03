@@ -40,6 +40,23 @@ namespace Repostories
                 CreateTime = DateTime.Now
             };
 
+
+            var channel_1 = new SysChannel {  Name = "SCT" };
+            var channel_2 = new SysChannel { Name = "CIC" };
+            var channel_3 = new SysChannel { Name = "CCT" };
+            var channel_4 = new SysChannel { Name = "MCT" };
+            var channel_5 = new SysChannel { Name = "CMBL" };
+            var channel_6 = new SysChannel { Name = "SKP" };
+            var channel_7 = new SysChannel { Name = "赤湾港务" };
+
+            _sysUser.SysChannels.Add(channel_1);
+            _sysUser.SysChannels.Add(channel_2);
+            _sysUser.SysChannels.Add(channel_3);
+            _sysUser.SysChannels.Add(channel_4);
+            _sysUser.SysChannels.Add(channel_5);
+            _sysUser.SysChannels.Add(channel_6);
+            _sysUser.SysChannels.Add(channel_7);
+
             _sysUser.SysRoles.Add(_sysRole);
             
             context.SysUsers.Add(_sysUser);
@@ -73,6 +90,7 @@ namespace Repostories
             };  //用户管理
 
             user_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "分配角色", KeyCode = "Allot", IsValid = 1 });
+            user_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "分配行政通道", KeyCode = "AllotChannel", IsValid = 1 });
             user_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "创建", KeyCode = "Create", IsValid = 1 });
             user_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "删除", KeyCode = "Delete", IsValid = 1 });
             user_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "修改", KeyCode = "Edit", IsValid = 1 });
@@ -81,12 +99,34 @@ namespace Repostories
 
             _sysModule1.SubSysModules.Add(user_manager);
 
+
+            var channel_manager = new SysModule
+            {
+                Name = "行政通道管理",
+                EnglishName = "Channel Manage",
+                Url = "SysChannel",
+                Sort = 2,
+                Enable = 1,
+                Creater = 1,
+                CreateTime = DateTime.Now,
+                IsLast = 1
+            };
+
+            channel_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "分配用户", KeyCode = "Allot", IsValid = 1 });
+            channel_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "创建", KeyCode = "Create", IsValid = 1 });
+            channel_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "删除", KeyCode = "Delete", IsValid = 1 });
+            channel_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "修改", KeyCode = "Edit", IsValid = 1 });
+            channel_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "查询", KeyCode = "Query", IsValid = 1 });
+            channel_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "保存", KeyCode = "Save", IsValid = 1 });
+
+            _sysModule1.SubSysModules.Add(channel_manager);
+
             var role_manage = new SysModule
             {
                 Name = "角色组管理",
                 EnglishName = "Rike Manage",
                 Url = "SysRole",
-                Sort = 2,
+                Sort = 3,
                 Enable = 1,
                 Creater = 1,
                 CreateTime = DateTime.Now,
@@ -107,7 +147,7 @@ namespace Repostories
                 Name = "模块维护",
                 EnglishName = "Module Setting",
                 Url = "SysModule",
-                Sort = 3,
+                Sort = 4,
                 Enable = 1,
                 Creater = 1,
                 CreateTime = DateTime.Now,
@@ -123,7 +163,7 @@ namespace Repostories
                 Name = "角色权限设置",
                 EnglishName = "Role Authorize",
                 Url = "SysRight",
-                Sort = 6,
+                Sort = 5,
                 Enable = 1,
                 Creater = 1,
                 CreateTime = DateTime.Now,
@@ -293,6 +333,7 @@ namespace Repostories
 
             layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "查询", KeyCode = "Query", IsValid = 1 });
             layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "编辑", KeyCode = "Update", IsValid = 1 });
+            layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "删除", KeyCode = "Delete", IsValid = 1 });
             layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "添加", KeyCode = "Add", IsValid = 1 });
             layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "批量导入", KeyCode = "Export", IsValid = 1 });
             layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "有效设置", KeyCode = "Valid_Set", IsValid = 1 });

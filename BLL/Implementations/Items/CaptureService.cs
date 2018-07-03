@@ -29,7 +29,7 @@ namespace Services
         [Dependency]
         public IMessageRepository _messageRepository { get; set; }
 
-
+        #region 抬杠密钥
         private char[] chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
         public string GetRandomNumberString(int int_NumberLength)
@@ -41,6 +41,16 @@ namespace Services
             return validateCode;
         }
 
+        #endregion
+
+        public CaptureDTO GetById(int id)
+        {
+            var capture = _repository.GetById(id);
+            if (capture.IsNotNull())
+                return capture.ConvertoDto<Capture, CaptureDTO>();
+
+            return null;
+        }
 
         public Resp_Binary_Member<AlarmDTO> Add_One(CaptureDTO model)
         {
@@ -59,7 +69,7 @@ namespace Services
             {
                 using (var tran = new TransactionScope())
                 {
-                    var layout = context.Layouts.Where(d => d.CarNumber == model.CarNumber && d.IsValid == 1 && (d.ValideTime == null || d.ValideTime > DateTime.Now || d.ValideTime < DateTime.MinValue)).FirstOrDefault();
+                    var layout = context.Layouts.Where(d => d.CarNumber == model.CarNumber && d.IsValid == 1 && d.Channel == model.Channel).FirstOrDefault();
                     if (layout.IsNotNull())
                     {
                         if (layout.TriggerType == 2 || layout.TriggerType == model.Pass.ToInt()) //进出场控制
@@ -73,13 +83,16 @@ namespace Services
                                 IsDeal = 0,
                                 GUID = guid,
                                 AlarmTime = DateTime.Now,
+                                Channel=model.Channel,
                                 LetterCode = AESEncryptHelper.Encrypt(lettercode)
                             };
+
+                            _messageRepository.SendMessage(capture.ToJson(), capture.Channel);
                             capture.Alarms.Add(alarm);
 
                             if (layout.Degree > 1)
                                 --layout.Degree;
-                            if (layout.Degree == 1)
+                            if (layout.Degree == 0)
                                 layout.IsValid = 0;
                         }
 
@@ -215,7 +228,7 @@ namespace Services
             records.ToMaybe()
                 .Do(d => request.Verify())
                 .DoWhen(t => !string.IsNullOrEmpty(request.CarNumber), d => records = records.Where(s => s.CarNumber.Contains(request.CarNumber.Trim())))
-                .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => s.Channel.Contains(request.Channel.Trim())))
+                .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => request.Channel.Contains(s.Channel)))
                 .DoWhen(t => !string.IsNullOrEmpty(request.ParkId), d => records = records.Where(s => s.ParkId.Contains(request.ParkId.Trim())));
 
             if (!string.IsNullOrEmpty(request.Pass) && int.TryParse(request.Pass, out int result))

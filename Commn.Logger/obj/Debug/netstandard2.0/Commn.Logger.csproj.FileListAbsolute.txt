@@ -1,0 +1,6 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\Commn.Logger\bin\Debug\netstandard2.0\Commn.Logger.deps.json
+D:\tim\工作内容\蛇口\code\SKCustoms\Commn.Logger\bin\Debug\netstandard2.0\Commn.Logger.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\Commn.Logger\obj\Debug\netstandard2.0\Commn.Logger.csprojResolveAssemblyReference.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\Commn.Logger\obj\Debug\netstandard2.0\Commn.Logger.csproj.CoreCompileInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\Commn.Logger\obj\Debug\netstandard2.0\Commn.Logger.AssemblyInfoInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\Commn.Logger\obj\Debug\netstandard2.0\Commn.Logger.AssemblyInfo.cs

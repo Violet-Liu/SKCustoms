@@ -41,8 +41,17 @@ namespace SKCustoms.WebApi.Controllers
         public Resp_Binary Assign_Role(SysUser_Assign_Roles request) => _service.Assign_Role(request);
 
         [HttpPost]
+        [Route("assign_channel")]
+        public Resp_Binary Assign_Channel(SysUser_Assign_Channels request) => _service.Assign_Channel(request);
+
+
+        [HttpPost]
         [Route("Index")]
         public Resp_Index<SysUserDTO> Index(Req_Index request) => _service.Index(request);
+
+        [HttpGet]
+        [Route("popup")]
+        public CaptureDTO Popup(string userId) => _service.Popup(userId);
 
 
     }

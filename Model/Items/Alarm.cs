@@ -26,6 +26,8 @@ namespace Domain
 
         public string LetterCode { get; set; }
 
+        public string Channel { get; set; }
+
         public Nullable<DateTime> HandlerTime { get; set; }
 
         public virtual Capture Capture { get; set; }

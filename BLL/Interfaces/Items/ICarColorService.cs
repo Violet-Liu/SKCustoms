@@ -18,5 +18,6 @@ namespace Services
         Resp_Query<CarColor> Query(RMG_Query request);
 
         Resp_Index<CarColor> Index(Req_Index request);
+
     }
 }

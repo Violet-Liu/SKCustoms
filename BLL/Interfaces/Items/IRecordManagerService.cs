@@ -15,6 +15,8 @@ namespace Services
 
         Resp_Binary Add_One(RecordManagerDTO model);
 
+        Resp_Binary Add(Req_RecordManager_Add request);
+
         Resp_Binary Add_Batch(IEnumerable<RecordManagerDTO> models);
 
         Resp_Binary Del_Batch(IEnumerable<int> ids);
@@ -24,5 +26,7 @@ namespace Services
         Resp_Binary Import(File_Import request);
 
         Resp_Index<RecordManagerDTO> Index(Req_Index request);
+
+        int JobSetInValid();
     }
 }

@@ -66,6 +66,9 @@ namespace Core
 
             container.RegisterType<ICarColorRepository, CarColorRepository>();
             container.RegisterType<ICarColorService, CarColorService>();
+
+            container.RegisterType<ISysChannelRepository, SysChannelRepository>();
+            container.RegisterType<ISysChannelService, SysChannelService>();
         }
     }
 }

@@ -10,5 +10,7 @@ namespace Domain
     public interface IRecordManagerRepository: IRepository<RecordManager>
     {
         void DelRepeatRecord();
+
+        int SetInValid();
     }
 }

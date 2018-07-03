@@ -1,7 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -61,6 +66,20 @@ namespace Common
 
             source.Add(item);
             return true;
+        }
+
+
+        public static T Copy<T>(this T obj)
+        {
+            Type t = obj.GetType();
+            object o = Activator.CreateInstance(t);
+            PropertyInfo[] PI = t.GetProperties();
+            for (int i = 0; i < PI.Length; i++)
+            {
+                PropertyInfo P = PI[i];
+                P.SetValue(o, P.GetValue(obj));
+            }
+            return (T)o;
         }
     }
 

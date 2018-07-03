@@ -111,6 +111,7 @@
     <Compile Include="DTOs\CaptureDTO.cs" />
     <Compile Include="DTOs\LayoutDTO.cs" />
     <Compile Include="DTOs\RecordManagerDTO.cs" />
+    <Compile Include="DTOs\SysChannelDTO.cs" />
     <Compile Include="DTOs\SysErrorLogDTO.cs" />
     <Compile Include="DTOs\SysModuleDTO.cs" />
     <Compile Include="DTOs\SysModuleOperateDTO.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Implementations\Items\LayoutService.cs" />
     <Compile Include="Implementations\Items\RecordManagerService.cs" />
     <Compile Include="Implementations\Sys\RecordMGradeService.cs" />
+    <Compile Include="Implementations\Sys\SysChannelService.cs" />
     <Compile Include="Implementations\Sys\SysModuleOperateService.cs" />
     <Compile Include="Implementations\Sys\AccountService.cs" />
     <Compile Include="Implementations\Sys\SysConfigService.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="Interfaces\Items\ILayoutService.cs" />
     <Compile Include="Interfaces\Items\IRecordManagerService.cs" />
     <Compile Include="Interfaces\Sys\IRecordMGradeService.cs" />
+    <Compile Include="Interfaces\Sys\ISysChannelService.cs" />
     <Compile Include="Interfaces\Sys\ISysModuleOperateService.cs" />
     <Compile Include="Interfaces\Sys\ISysRightOperatorService.cs" />
     <Compile Include="Interfaces\Sys\ISysRightService.cs" />
@@ -184,8 +187,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MQ\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,6 +14,8 @@ namespace Services
 
         Resp_Binary Modify(LayoutDTO model);
 
+        Resp_Binary Add(Req_Layout_Add request);
+
         Resp_CheckExsits<LayoutDTO> Exsits(Req_CheckExsits request);
 
         Resp_Binary Add_Batch(IEnumerable<LayoutDTO> models);
@@ -31,5 +33,7 @@ namespace Services
         Resp_All_Sync All_Sync(Req_All_Sync request);
 
         Resp_Binary Del(Base_SingleDel model);
+
+        int JobSetInValid();
     }
 }

@@ -24,6 +24,10 @@ namespace SKCustoms.WebApi.Controllers
         [HttpPost]
         public Resp_Query<RecordManagerDTO> Query(RecordManager_Query req) => _service.Query(req);
 
+        [Route("add")]
+        [HttpPost]
+        public Resp_Binary Add(Req_RecordManager_Add request) => _service.Add(request);
+
         [Route("add_one")]
         [HttpPost]
         public Resp_Binary Add_One(RecordManagerDTO manager) => _service.Add_One(manager);

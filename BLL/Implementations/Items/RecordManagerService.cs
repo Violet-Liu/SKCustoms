@@ -44,16 +44,16 @@ namespace Services
                 .DoWhen(t => !string.IsNullOrEmpty(request.Contact.NullToString().Trim()), d => records = records.Where(s => s.Contact.Contains(request.Contact)))
                 .DoWhen(t => !string.IsNullOrEmpty(request.RecordMGrade.NullToString().Trim()), d => records = records.Where(s => s.RecordMGrade.Equals(request.RecordMGrade)))
                 .DoWhen(t => !string.IsNullOrEmpty(request.CarColor.NullToString().Trim()), d => records = records.Where(s => s.CarColor.Equals(request.CarColor)))
-                .DoWhen(t => !string.IsNullOrEmpty(request.CarType.NullToString().Trim()), d => records = records.Where(s => s.CarType.Equals(request.CarType)));
+                .DoWhen(t => !string.IsNullOrEmpty(request.CarType.NullToString().Trim()), d => records = records.Where(s => s.CarType.Equals(request.CarType)))
+                .DoWhen(t => !string.IsNullOrEmpty(request.Channel.NullToString().Trim()), d => records = records.Where(s => request.Channel.Contains(s.Channel)));
 
             if (!string.IsNullOrEmpty(request.IsValid) && int.TryParse(request.IsValid, out int result))
             {
                 if (result == 0)
-                    records = records.Where(s => s.ValideTime != null && s.ValideTime < DateTime.Now && s.ValideTime > DateTime.MinValue);
+                    records = records.Where(s => s.IsValid == 0);
                 else if (result == 1)
-                    records = records.Where(s => s.ValideTime == null || s.ValideTime > DateTime.Now || s.ValideTime < DateTime.MinValue);
+                    records = records.Where(s => s.IsValid == 1);
             }
-
             if(!string.IsNullOrEmpty(request.BeginTime) && DateTime.TryParse(request.BeginTime, out DateTime start))  //Linq to entity 不支持datatime.parse函数
                 records = records.Where(s => s.CreateTime >= start);
 
@@ -78,10 +78,10 @@ namespace Services
         public Resp_CheckExsits<RecordManagerDTO> Exsits(Req_CheckExsits request)
         {
             var response = new Resp_CheckExsits<RecordManagerDTO>();
-            var entity = _repository.GetByWhere(t => t.CarNumber == request.CarNumber).OrderByDescending(t=>t.ID).FirstOrDefault();
+            var entity = _repository.GetByWhere(t => t.CarNumber == request.CarNumber && t.Channel == request.Channel).OrderByDescending(t => t.ID).FirstOrDefault();
             if (entity.IsNotNull())
             {
-                if (entity.ValideTime.IsNotNull() && entity.ValideTime < DateTime.Now)
+                if (entity.IsValid == 1)
                 {
                     response.flag = 2;
                     response.message = "该车牌曾已备案，且已失效，如需重新备案，请修改重新提交即可";
@@ -99,18 +99,40 @@ namespace Services
             return response;
         }
 
+        /// <summary>
+        /// 一次增加多个港口
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public Resp_Binary Add(Req_RecordManager_Add request)
+        {
+            var record = request.entity.GetPrototype<RecordManagerDTO, RecordManager>();
+            record.IsValid = 1;
+
+            if (!request.channels.IsNullOrEmpty())
+            {
+                request.channels.ForEach(s =>
+                {
+                    var temp = record.Copy();
+                    temp.Channel = s;
+                    _repository.Insert(temp);
+                });
+            }
+
+            if (_repository.UnitOfWork.Commite() > 0)
+                return Resp_Binary.Add_Sucess;
+            return Resp_Binary.Add_Failed;
+        }
+
         public Resp_Binary Add_One(RecordManagerDTO model)
         {
-            var old_model = _repository.GetByWhere(t => t.CarNumber == model.CarNumber).FirstOrDefault();
+            var old_model = _repository.GetByWhere(t => t.CarNumber == model.CarNumber && t.Channel == model.Channel && t.IsValid == 1).FirstOrDefault();
             if (old_model.IsNotNull())
-            {
-                var response = new Resp_Binary
-                {
-                    message = "该车牌号已在备案库，是否进行替换"
-                };
-                return response;
-            }
-            _repository.Insert(model.GetPrototype<RecordManagerDTO,RecordManager>());
+                return Resp_Binary.Add_Repeated; 
+
+            var record = model.GetPrototype<RecordManagerDTO, RecordManager>();
+            record.IsValid = 1;
+            _repository.Insert(record);
             if (_repository.UnitOfWork.Commite()>0)
                 return Resp_Binary.Add_Sucess;
             return Resp_Binary.Add_Failed;
@@ -154,13 +176,14 @@ namespace Services
             entity.TLicense = model.TLicense;
             entity.DLicense = model.DLicense;
             entity.Driver = model.Driver;
+            entity.Channel = model.Channel;
             entity.Contact = model.Contact;
             entity.Organization = model.Organization;
             entity.SysUserId = model.SysUserId.ToInt();
             entity.CreateTime = DateTime.Now;
             entity.ValideTime = string.IsNullOrEmpty(model.ValideTime) ? dt : model.ValideTime.ToDateTime();
             entity.RecordMGrade = model.RecordMGrade;
-
+           
             _repository.Update(entity);
             if(_repository.UnitOfWork.Commite()>0)
                 return  Resp_Binary.Modify_Sucess;
@@ -205,8 +228,8 @@ namespace Services
 
             var excelFile = new ExcelQueryFactory(fileName);
             excelFile.AddMapping<RecordManager>(x => x.CarNumber, "车牌号*");
+            excelFile.AddMapping<RecordManager>(x => x.Channel, "行政通道*");
             excelFile.AddMapping<RecordManager>(x => x.TLicense, "行驶证号*");
-            excelFile.AddMapping<RecordManager>(x => x.DLicense, "驾驶证号*");
             excelFile.AddMapping<RecordManager>(x => x.DLicense, "驾驶证号*");
             excelFile.AddMapping<RecordManager>(x => x.RecordMGrade, "备案分级");
             excelFile.AddMapping<RecordManager>(x => x.ValideTime, "有效期");
@@ -240,7 +263,9 @@ namespace Services
        
                     var record = new RecordManager
                     {
+                        IsValid=1,
                         CarNumber = row.CarNumber,
+                        Channel=row.Channel,
                         TLicense = row.TLicense,
                         DLicense = row.DLicense,
                         RecordMGrade = row.RecordMGrade,
@@ -259,7 +284,7 @@ namespace Services
             }
             BulkOperation<RecordManager>.MySqlBulkInsert(records, _repository);
 
-            _repository.DelRepeatRecord();
+            //_repository.DelRepeatRecord();
             return new Resp_Binary { flag = 1, message = "导入成功" };
         }
 
@@ -295,6 +320,11 @@ namespace Services
 
             return response;
 
+        }
+
+        public int JobSetInValid()
+        {
+           return _repository.SetInValid();
         }
     }
 }

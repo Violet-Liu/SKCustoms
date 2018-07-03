@@ -56,6 +56,8 @@ namespace Repostories
 
         public virtual DbSet<CarType> CarTypes { get; set; }
 
+        public virtual DbSet<SysChannel> SysChannels { get; set; }
+
         #endregion
 
 
@@ -79,6 +81,7 @@ namespace Repostories
             modelBuilder.Configurations.Add(new RecordMGradeConfiguration());
             modelBuilder.Configurations.Add(new CarColorConfiguration());
             modelBuilder.Configurations.Add(new CarTypeConfiguration());
+            modelBuilder.Configurations.Add(new SysChannelConfiguration());
         }
 
         private static string GetConnectionString()

@@ -1,0 +1,14 @@
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi.Tests\bin\Debug\ApplicationInsights.config
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi.Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi.Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi.Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi.Tests\bin\Debug\SKCustoms.WebApi.Tests.dll.config
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi.Tests\bin\Debug\SKCustoms.WebApi.Tests.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\b\SKCustoms.WebApi.Tests\bin\Debug\SKCustoms.WebApi.Tests.pdb
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\SKCustoms.WebApi.Tests\Debug\SKCustoms.WebApi.Tests.csprojResolveAssemblyReference.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\SKCustoms.WebApi.Tests\Debug\SKCustoms.WebApi.Tests.csproj.CoreCompileInputs.cache
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\SKCustoms.WebApi.Tests\Debug\SKCustoms.WebApi.Tests.dll
+D:\tim\工作内容\蛇口\code\SKCustoms\.vs\SKCustoms\lut\0\i\SKCustoms.WebApi.Tests\Debug\SKCustoms.WebApi.Tests.pdb

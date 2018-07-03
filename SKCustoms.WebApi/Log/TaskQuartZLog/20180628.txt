@@ -1,0 +1,28 @@
+日志时间：2018-06-28 00:00:00,006 
+日志级别：INFO   
+日志内容：You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'adn ValideTime<now() and ValideTime>'1977-01-01 00:00:00'' at line 1
+
+日志时间：2018-06-28 08:00:00,000 
+日志级别：INFO   
+日志内容：定时设置数据无效运行2018/6/28 8:00:00
+
+日志时间：2018-06-28 08:00:00,012 
+日志级别：INFO   
+日志内容：You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'adn ValideTime<now() and ValideTime>'1977-01-01 00:00:00'' at line 1
+
+日志时间：2018-06-28 12:00:00,045 
+日志级别：INFO   
+日志内容：定时设置数据无效运行2018/6/28 12:00:00
+
+日志时间：2018-06-28 12:00:00,076 
+日志级别：INFO   
+日志内容：You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'adn ValideTime<now() and ValideTime>'1977-01-01 00:00:00'' at line 1
+
+日志时间：2018-06-28 21:00:00,002 
+日志级别：INFO   
+日志内容：定时设置数据无效运行2018/6/28 21:00:00
+
+日志时间：2018-06-28 21:00:00,010 
+日志级别：INFO   
+日志内容：You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'adn ValideTime<now() and ValideTime>'1977-01-01 00:00:00'' at line 1
+

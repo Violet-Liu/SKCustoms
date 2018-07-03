@@ -70,6 +70,8 @@ namespace Services
         public string CarType { get; set; }
 
         public string RecordMGrade { get; set; }
+
+        public string Channel { get; set; }
     }
 
     public class Capture_Query : Base_Page_Request
@@ -97,9 +99,11 @@ namespace Services
     {
         public string CarNumber { get; set; }
 
-        public int IsValid { get; set; }
+        public string IsValid { get; set; }
 
         public string Trigger { get; set; }
+
+        public string Channel { get; set; }
     }
 
     public class Alarm_Query : Base_Page_Request
@@ -115,6 +119,8 @@ namespace Services
         public string HandlerBeginTime { get; set; }
 
         public string HandlerEndTime { get; set; }
+
+        public string Channel { get; set; }
     }
 
     public class Alarm_Check
@@ -167,6 +173,14 @@ namespace Services
         public List<int> RoleIds { get; set; }
     }
 
+    public class SysUser_Assign_Channels
+    {
+
+        public int UserId { get; set; }
+
+        public List<int> ChannelIds { get; set; }
+    }
+
     public class SysRole_Query : Base_Page_Request
     {
         /// <summary>
@@ -179,6 +193,13 @@ namespace Services
     {
         public int RoleId { get; set; }
         
+        public List<int> UserIds { get; set; }
+    }
+
+    public class SysChannel_Assign_Users
+    {
+        public int ChannelId { get; set; }
+
         public List<int> UserIds { get; set; }
     }
 
@@ -281,13 +302,31 @@ namespace Services
         public string CarColor { get; set; }
 
         public int Pass { get; set; }
+
+        public string Channel { get; set; }
     }
 
     public class Req_CheckExsits
     {
         public string CarNumber { get; set; }
+
+        public string Channel { get; set; }
     }
 
+
+    public class Req_RecordManager_Add
+    {
+        public RecordManagerDTO entity { get; set; }
+
+        public List<string> channels { get; set; }
+    }
+
+    public class Req_Layout_Add
+    {
+        public LayoutDTO entity { get; set; }
+
+        public List<string> channels { get; set; }
+    }
 
 
 }

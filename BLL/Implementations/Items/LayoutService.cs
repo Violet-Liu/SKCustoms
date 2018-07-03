@@ -27,6 +27,26 @@ namespace Services
         public ISysRightRepository _sysRightRepository { get; set; }
 
 
+        public Resp_Binary Add(Req_Layout_Add request)
+        {
+            var record = request.entity.GetPrototype<LayoutDTO, Layout>();
+            record.IsValid = 1;
+            if (!request.channels.IsNullOrEmpty())
+            {
+                request.channels.ForEach(s =>
+                {
+                    var temp = record.Copy();
+                    temp.Channel = s;
+                    _repository.Insert(temp);
+                });
+            }
+            if (_repository.UnitOfWork.Commite() > 0)
+            {
+                return Resp_Binary.Add_Sucess;
+            }
+            return Resp_Binary.Add_Failed;
+        }
+
         public Resp_Binary Add_Batch(IEnumerable<LayoutDTO> models)
         {
             if (models.Count() < 5000)
@@ -39,16 +59,10 @@ namespace Services
 
         public Resp_Binary Add_One(LayoutDTO model)
         {
-            var old_model = _repository.GetByWhere(t => t.CarNumber == model.CarNumber).FirstOrDefault();
-            if (old_model.IsNotNull())
-            {
-                var response = new Resp_Binary
-                {
-                    message = "该车牌号已在备案库，是否进行替换"
-                };
-                return response;
-            }
-            _repository.Insert(model.GetPrototype<LayoutDTO,Layout>());
+            var record = model.GetPrototype<LayoutDTO, Layout>();
+            record.IsValid = 1;
+            _repository.Insert(record);
+
             if (_repository.UnitOfWork.Commite() > 0)
             {
                 return Resp_Binary.Add_Sucess;
@@ -106,6 +120,7 @@ namespace Services
             var excelFile = new ExcelQueryFactory(fileName);
             excelFile.AddMapping<LayoutExModel>(x => x.CarNumber, "车牌号*");
             excelFile.AddMapping<LayoutExModel>(x => x.ValideTime, "有效期");
+            excelFile.AddMapping<LayoutExModel>(x => x.Channel, "行政通道*");
             excelFile.AddMapping<LayoutExModel>(x => x.Degree, "有效次数*");
             excelFile.AddMapping<LayoutExModel>(x => x.TriggerType, "进出场控制*");
             excelFile.AddMapping<LayoutExModel>(x => x.Description, "布控说明");
@@ -127,7 +142,8 @@ namespace Services
                     CarNumber = row.CarNumber,
                     ValideTime = DateTime.TryParse(row.ValideTime, out DateTime dt) ? dt : dtN,
                     SysUserId = userId,
-                    Degree = Enum.TryParse(row.Degree, out Layout_Degree result) ? (int)result : 0,
+                    Channel = row.Channel,
+                    Degree = Enum.TryParse(row.Degree, out Layout_Degree result) ? (int)result : 1,
                     TriggerType = Enum.TryParse(row.TriggerType, out Layout_TriggerType result2) ? (int)result2 : 0,
                     CreateTime = DateTime.Now,
                     IsValid = 1,
@@ -155,6 +171,7 @@ namespace Services
             entity.Degree = model.Degree;
             entity.Description = model.Description;
             entity.SysUserId = model.SysUserId.ToInt();
+            entity.Channel = model.Channel;
 
             _repository.Update(entity);
             if (_repository.UnitOfWork.Commite() > 0)
@@ -181,16 +198,17 @@ namespace Services
 
             records.ToMaybe()
                 .Do(d => request.Verify())
-                .DoWhen(t => !string.IsNullOrEmpty(request.CarNumber), d => records = records.Where(s => s.CarNumber.Contains(request.CarNumber)));
+                .DoWhen(t => !string.IsNullOrEmpty(request.CarNumber), d => records = records.Where(s => s.CarNumber.Contains(request.CarNumber)))
+                .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => request.Channel.Contains(s.Channel)));
 
             if (!string.IsNullOrEmpty(request.Trigger) && int.TryParse(request.Trigger, out int result))
                 records = records.Where(s => s.TriggerType == result);
 
-            if (request.IsValid == 1)
-                records = records.Where(s => s.IsValid == 1 && (s.ValideTime == null || s.ValideTime > DateTime.Now || s.ValideTime < DateTime.MinValue));
+            if (request.IsValid.ToInt() == 1)
+                records = records.Where(s => s.IsValid == 1);
 
-            if (request.IsValid == 0)
-                records = records.Where(s => s.IsValid == 0 || (s.ValideTime != null && s.ValideTime < DateTime.Now && s.ValideTime > DateTime.MinValue));
+            if (request.IsValid.ToInt() == 0)
+                records = records.Where(s => s.IsValid == 0);
 
             if (!string.IsNullOrEmpty(request.BeginTime) && DateTime.TryParse(request.BeginTime, out DateTime start))  //Linq to entity 不支持datatime.parse函数
             {
@@ -305,10 +323,10 @@ namespace Services
         public Resp_CheckExsits<LayoutDTO> Exsits(Req_CheckExsits request)
         {
             var response = new Resp_CheckExsits<LayoutDTO>();
-            var entity = _repository.GetByWhere(t => t.CarNumber == request.CarNumber).OrderByDescending(t => t.ID).FirstOrDefault();
+            var entity = _repository.GetByWhere(t => t.CarNumber == request.CarNumber && t.Channel == request.Channel).OrderByDescending(t => t.ID).FirstOrDefault();
             if (entity.IsNotNull())
             {
-                if ((entity.ValideTime.IsNotNull() && entity.ValideTime < DateTime.Now && entity.ValideTime > DateTime.MinValue) || entity.IsValid == 0)
+                if (entity.ValideTime.IsNotNull() && entity.IsValid == 0)
                 {
                     response.flag = 2;
                     response.message = "该车牌曾已布控，且已失效，如需重新布控，请修改重新提交即可";
@@ -329,7 +347,7 @@ namespace Services
 
         public Resp_Binary_Member<LayoutDTO> Hit(Layout_Hit request)
         {
-            var layout = _repository.GetByWhere(d => d.CarNumber == request.CarNumber && d.IsValid == 1 && (d.ValideTime == null || d.ValideTime > DateTime.Now || d.ValideTime < DateTime.MinValue)).FirstOrDefault();
+            var layout = _repository.GetByWhere(d => d.CarNumber == request.CarNumber && d.IsValid == 1 && d.Channel == request.Channel).FirstOrDefault();
             if(layout.IsNotNull())
             {
                 if (layout.TriggerType == request.Pass || layout.TriggerType == 2)  //triggerType=2代表进/出场都控制
@@ -341,6 +359,11 @@ namespace Services
 
             return new Resp_Binary_Member<LayoutDTO> { message = "车辆未中控", flag = 0 };
 
+        }
+
+        public int JobSetInValid()
+        {
+            return _repository.SetInValid();
         }
     }
 }

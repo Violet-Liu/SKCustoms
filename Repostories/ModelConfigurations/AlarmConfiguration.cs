@@ -18,6 +18,8 @@ namespace Repostories.ModelConfigurations
             HasIndex(o => o.CarNumber);
             Property(o => o.Operator).HasColumnType("VARCHAR").HasMaxLength(200);
             Property(o => o.LetterCode).HasColumnType("VARCHAR").HasMaxLength(200);
+            Property(o => o.Channel).HasColumnType("VARCHAR").HasMaxLength(200);
+            HasIndex(o => o.Channel);
             HasOptional(o => o.Capture).WithMany(s=>s.Alarms).HasForeignKey(o=>o.CaptureId).WillCascadeOnDelete(true);
 
         }

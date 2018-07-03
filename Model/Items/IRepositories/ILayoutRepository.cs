@@ -9,5 +9,6 @@ namespace Domain
 {
     public interface ILayoutRepository : IRepository<Layout>
     {
+        int SetInValid();
     }
 }

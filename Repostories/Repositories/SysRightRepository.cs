@@ -36,7 +36,7 @@ namespace Repostories
                         inner join SysModuleOperate c on c.ModuleId = a.SysModuleId and c.IsValid=1
 						left join SysRightOperate d on a.ID=d.RightId and d.SysModuleOperateId=c.ID
                         where  u.ID={userId} and c.KeyCode<> '' 
-						group by a.SysModuleId, b.Name,c.KeyCode,c.Name,b.ParentId,c.Sort
+						group by a.SysModuleId, b.Name,c.KeyCode,c.Name,b.ParentId,c.Sort,d.IsValid 
                         order by a.SysModuleId,c.Sort;";
 
             return ((IQueryableUnitOfWork)UnitOfWork).ExecuteQuery<SysUserRightView>(sql);

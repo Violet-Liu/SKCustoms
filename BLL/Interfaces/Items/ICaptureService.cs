@@ -15,5 +15,7 @@ namespace Services
 
         Resp_Index<CaptureDTO> Index(Req_Index request);
 
+        CaptureDTO GetById(int id);
+
     }
 }
