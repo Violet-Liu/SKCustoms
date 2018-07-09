@@ -81,7 +81,7 @@ namespace Services
             var entity = _repository.GetByWhere(t => t.CarNumber == request.CarNumber && t.Channel == request.Channel).OrderByDescending(t => t.ID).FirstOrDefault();
             if (entity.IsNotNull())
             {
-                if (entity.IsValid == 1)
+                if (entity.IsValid == 0)
                 {
                     response.flag = 2;
                     response.message = "该车牌曾已备案，且已失效，如需重新备案，请修改重新提交即可";

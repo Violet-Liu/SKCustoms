@@ -139,6 +139,7 @@ namespace Services
                 return new Resp_Binary { message = "用户不存在" };
             }
 
+            exist.Name = sysuser.Name;
             exist.Pwd = sysuser.Pwd;
             exist.Position = sysuser.Position;
             exist.TrueName = sysuser.TrueName;
@@ -268,7 +269,7 @@ namespace Services
                         using (ISession session = connection.CreateSession())
                         {
                             IMessageConsumer consumer = session.CreateDurableConsumer(new Apache.NMS.ActiveMQ.Commands.ActiveMQTopic("MQMessage"), sysUser.Name, selector, false);
-                            var i = 50;
+                            var i = 10;
                             while (i > 0)
                             {
                                 ITextMessage msg = (ITextMessage)consumer.Receive(new TimeSpan(1000));

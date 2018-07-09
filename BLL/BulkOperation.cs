@@ -19,7 +19,11 @@ namespace Services
      */
     public class BulkOperation<TEntity> where TEntity : class, IEntity
     {
-
+        /// <summary>
+        /// mysql synchronization batch insert
+        /// </summary>
+        /// <param name="models"></param>
+        /// <param name="_repository"></param>
         public static void MySqlBulkInsert(IEnumerable<TEntity> models, IRepository<TEntity> _repository)
         {
             if (_repository == null)
@@ -30,6 +34,11 @@ namespace Services
             _repository.MySqlBulkInsert(models);
         }
 
+        /// <summary>
+        /// mysql asynchronization batch insert
+        /// </summary>
+        /// <param name="models"></param>
+        /// <param name="_repository"></param>
         public static async void MySqlBulkInsertAsync(IEnumerable<TEntity> models, IRepository<TEntity> _repository)
         {
             if (_repository == null)
@@ -65,6 +74,11 @@ namespace Services
             }
         }
 
+        /// <summary>
+        /// mssql 
+        /// </summary>
+        /// <param name="models"></param>
+        /// <param name="_repository"></param>
         public static void BulkInsert(IEnumerable<TEntity> models, IRepository<TEntity> _repository) 
         {
             if (_repository == null)
@@ -75,7 +89,11 @@ namespace Services
             _repository.BulkInsert(models);
         }
 
-
+        /// <summary>
+        /// mssql
+        /// </summary>
+        /// <param name="models"></param>
+        /// <param name="_repository"></param>
         public static async void BulkInsertAsync(IEnumerable<TEntity> models, IRepository<TEntity> _repository)
         {
             if (_repository == null)

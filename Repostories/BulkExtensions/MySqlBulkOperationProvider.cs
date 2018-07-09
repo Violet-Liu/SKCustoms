@@ -96,9 +96,9 @@ namespace Repostories.BulkExtensions
                     if (i != 0) sb.Append(",");
                     if (colum.DataType == typeof(string) && row[colum].ToString().Contains(","))
                     {
-                        sb.Append("\"" + row[colum].ToString().Replace("\"", "\"\"") + "\"");
+                        sb.Append("\"" + colum.ColumnName.ToUpper() == "ID" ? "0" : row[colum].ToString().Replace("\"", "\"\"") + "\"");
                     }
-                    else sb.Append(row[colum].ToString());
+                    else sb.Append(colum.ColumnName.ToUpper() == "ID" ? "0" : row[colum].ToString());
                 }
                 sb.AppendLine();
             }

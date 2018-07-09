@@ -53,7 +53,7 @@ namespace SKCustoms.WebApi
                 using (var context = new SKContext())
                 {
                     num += ((IQueryableUnitOfWork)context).ExecuteCommand($"update layout set IsValid=0 where IsValid=1 and ValideTime<now() and ValideTime>'1977-01-01 00:00:00';");
-                    num += ((IQueryableUnitOfWork)context).ExecuteCommand($"update recordmanager set IsValid=0 where IsValid=1 adn ValideTime<now() and ValideTime>'1977-01-01 00:00:00';");
+                    num += ((IQueryableUnitOfWork)context).ExecuteCommand($"update recordmanager set IsValid=0 where IsValid=1 and ValideTime<now() and ValideTime>'1977-01-01 00:00:00';");
                 }
             }
             catch (Exception ex)
