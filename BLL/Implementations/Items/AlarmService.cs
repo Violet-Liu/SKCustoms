@@ -98,7 +98,7 @@ namespace Services
             records.ToMaybe()
                 .Do(d => request.Verify())
                 .DoWhen(t => !string.IsNullOrEmpty(request.CarNumber), d => records = records.Where(s => s.CarNumber.Contains(request.CarNumber)))
-                .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => request.Channel.Contains(s.Channel)));
+                .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => s.Channel.Equals(request.Channel)));
 
 
             if(!string.IsNullOrEmpty(request.IsDeal)&&int.TryParse(request.IsDeal,out int result))
@@ -151,7 +151,12 @@ namespace Services
             if (!limits.IsNullOrEmpty() && limits.Find(s => s.IsValid == 1).IsNotNull())
             {
                 response.allowVisit = true;
-                response.moduleOperaties = limits;
+                response.moduleOperaties = limits.OrderByDescending(t => t.IsValid).GroupBy(t => new { t.KeyCode, t.KeyName }).Select(s => new SysModuleOperateIndexDTO
+                {
+                    KeyCode = s.Key.KeyCode,
+                    KeyName = s.Key.KeyName,
+                    IsValid = s.Sum(x => x.IsValid),
+                }).ToList();
                 var query_parameter = new Alarm_Query { PgIndex = 1, PgSize = request.PgSize };
                 response.query = Query(query_parameter);
             }

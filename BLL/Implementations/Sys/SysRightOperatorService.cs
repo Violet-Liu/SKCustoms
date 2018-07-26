@@ -168,7 +168,12 @@ namespace Services
             if (!limits.IsNullOrEmpty() && limits.Find(s => s.IsValid == 1).IsNotNull())
             {
                 response.allowVisit = true;
-                response.moduleOperaties = limits;
+                response.moduleOperaties = limits.OrderByDescending(t => t.IsValid).GroupBy(t => new { t.KeyCode, t.KeyName }).Select(s => new SysModuleOperateIndexDTO
+                {
+                    KeyCode = s.Key.KeyCode,
+                    KeyName = s.Key.KeyName,
+                    IsValid = s.Sum(x => x.IsValid),
+                }).ToList();
                 using (var context = new SKContext())
                 {
                     response.sysRoles = context.SysRoles.ToList().ConvertoDto<SysRole, SysRoleDTO>().ToList();

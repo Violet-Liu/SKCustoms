@@ -35,5 +35,9 @@ namespace Services
         Resp_Binary Del(Base_SingleDel model);
 
         int JobSetInValid();
+
+        Resp_Binary LayoutRandom_Save(Layout_Random_Set set);
+
+        Resp_LayoutRandomSet LayoutRandom_Get();
     }
 }

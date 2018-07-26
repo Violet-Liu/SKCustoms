@@ -336,6 +336,7 @@ namespace Repostories
             layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "删除", KeyCode = "Delete", IsValid = 1 });
             layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "添加", KeyCode = "Add", IsValid = 1 });
             layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "批量导入", KeyCode = "Export", IsValid = 1 });
+            layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "随机取样", KeyCode = "Random", IsValid = 1 });
             layout_manager.SysModuleOperates.Add(new SysModuleOperate { Name = "有效设置", KeyCode = "Valid_Set", IsValid = 1 });
 
             sysModule3.SubSysModules.Add(layout_manager);

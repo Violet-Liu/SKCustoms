@@ -33,5 +33,9 @@ namespace SKCustoms.WebApi.Controllers
         [Route("getbyId")]
         [HttpGet]
         public CaptureDTO GetById(int id) => _service.GetById(id);
+
+        [Route("decrease")]
+        [HttpGet]
+        public Resp_Binary Decrease(long id) => _service.Decrease(id);
     }
 }

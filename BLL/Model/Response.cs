@@ -163,7 +163,13 @@ namespace Services
         public string message { get; set; }
         public string LetterCode { get; set; }
         public T entity { get; set; }
+
+        public long LayoutId { get; set; }
     }
 
+    public class Resp_LayoutRandomSet
+    {
+        public List<LayoutRandomSet> Sets { get; set; } = new List<LayoutRandomSet>();
+    }
 
 }

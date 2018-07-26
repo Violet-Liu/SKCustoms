@@ -44,6 +44,8 @@ namespace Repostories
 
         public virtual DbSet<Capture> Captures { get; set; }
 
+        public virtual DbSet<CaptureBackup> CaptureBackups { get; set; }
+
         public virtual DbSet<Layout> Layouts { get; set; }
 
         public virtual DbSet<Alarm> Alarms { get; set; }
@@ -82,6 +84,7 @@ namespace Repostories
             modelBuilder.Configurations.Add(new CarColorConfiguration());
             modelBuilder.Configurations.Add(new CarTypeConfiguration());
             modelBuilder.Configurations.Add(new SysChannelConfiguration());
+            modelBuilder.Configurations.Add(new CaptureBackupConfiguration());
         }
 
         private static string GetConnectionString()

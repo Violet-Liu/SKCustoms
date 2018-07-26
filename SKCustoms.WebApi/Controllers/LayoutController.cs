@@ -73,5 +73,13 @@ namespace SKCustoms.WebApi.Controllers
         [HttpPost]
         [Route("del")]
         public Resp_Binary Del(Base_SingleDel model) => _service.Del(model);
+
+        [HttpPost]
+        [Route("layoutRandm_set")]
+        public Resp_Binary LayoutRandm_Set(Layout_Random_Set set) => _service.LayoutRandom_Save(set);
+
+        [HttpGet]
+        [Route("layoutRandm_get")]
+        public Resp_LayoutRandomSet LayoutRandm_Get() => _service.LayoutRandom_Get();
     }
 }

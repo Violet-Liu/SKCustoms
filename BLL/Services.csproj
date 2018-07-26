@@ -154,6 +154,7 @@
     <Compile Include="Interfaces\Sys\ISysUserService.cs" />
     <Compile Include="Interfaces\Sys\IAccountService.cs" />
     <Compile Include="Interfaces\Sys\ISysErrorLogService.cs" />
+    <Compile Include="LayoutRandomSet.cs" />
     <Compile Include="Mapping\MapperHelper.cs" />
     <Compile Include="Model\Dock.cs" />
     <Compile Include="Model\LayoutExModel.cs" />

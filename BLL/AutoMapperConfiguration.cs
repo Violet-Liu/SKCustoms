@@ -65,6 +65,11 @@ namespace Services
                     .ForMember(dest => dest.Pass, opt => opt.MapFrom(src => src.Pass.ToInt()))
                     .ForMember(dest => dest.CreateTime, opt => opt.MapFrom(src => src.CreateTime.ToDateTime()));
 
+                cfg.CreateMap<CaptureDTO, CaptureBackup>()
+                    .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToLong()))
+                    .ForMember(dest => dest.Pass, opt => opt.MapFrom(src => src.Pass.ToInt()))
+                    .ForMember(dest => dest.CreateTime, opt => opt.MapFrom(src => src.CreateTime.ToDateTime()));
+
                 cfg.CreateMap<Layout, LayoutDTO>()
                     .ForMember(dest => dest.ID, opt => opt.MapFrom(src => src.ID.ToString()))
                     .ForMember(dest => dest.CreateTime, opt => opt.MapFrom(src => src.CreateTime.ToString()))

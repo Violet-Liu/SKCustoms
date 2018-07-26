@@ -199,7 +199,7 @@ namespace Services
             records.ToMaybe()
                 .Do(d => request.Verify())
                 .DoWhen(t => !string.IsNullOrEmpty(request.CarNumber), d => records = records.Where(s => s.CarNumber.Contains(request.CarNumber)))
-                .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => request.Channel.Contains(s.Channel)));
+                .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => s.Channel.Equals(request.Channel)));
 
             if (!string.IsNullOrEmpty(request.Trigger) && int.TryParse(request.Trigger, out int result))
                 records = records.Where(s => s.TriggerType == result);
@@ -264,7 +264,13 @@ namespace Services
             if (limits.IsNotNull() && limits.Count > 0 && limits.Find(s => s.IsValid == 1).IsNotNull())
             {
                 response.allowVisit = true;
-                response.moduleOperaties = limits;
+                response.moduleOperaties = limits.OrderByDescending(t => t.IsValid).GroupBy(t => new { t.KeyCode, t.KeyName }).Select(s => new SysModuleOperateIndexDTO
+                {
+                    KeyCode = s.Key.KeyCode,
+                    KeyName = s.Key.KeyName,
+                    IsValid = s.Sum(x => x.IsValid),
+                }).ToList();
+
                 var query_parameter = new Layout_Query { PgIndex = 1, PgSize = request.PgSize };
                 response.query = Query(query_parameter);
             }
@@ -365,5 +371,48 @@ namespace Services
         {
             return _repository.SetInValid();
         }
+
+        public Resp_Binary LayoutRandom_Save(Layout_Random_Set set)
+        {
+            if (set.IsOpen && set.Percent <= 0)
+                return new Resp_Binary { message = "随机取样百分比应大于0" };
+
+            var lset = new LayoutRandomSet {
+                IsOpen = set.IsOpen,
+                Pass = set.Pass,
+                RPercent=set.Percent,
+                ValidCount=set.ValidCount,
+                ValidDays=set.ValidDays,
+                Channel=set.Channel
+                
+            };
+
+            if (LayoutRandomSetLock.layoutRs.ContainsKey(set.Channel))
+                LayoutRandomSetLock.layoutRs[set.Channel] = lset;
+            else
+                LayoutRandomSetLock.layoutRs.Add(set.Channel, lset);
+
+
+            LayoutRandomSetLock.Set();
+
+
+            return Resp_Binary.Modify_Sucess;
+            //var ply = set.IsOpen + "|" + set.Pass + "|" + set.Percent;
+
+            //Application
+
+        }
+
+        public Resp_LayoutRandomSet LayoutRandom_Get()
+        {
+            var resp = new Resp_LayoutRandomSet();
+            foreach(var item in LayoutRandomSetLock.layoutRs.Values)
+            {
+                if (!string.IsNullOrEmpty(item.Channel))
+                    resp.Sets.Add(item);
+            }
+            return resp;
+        }
+
     }
 }

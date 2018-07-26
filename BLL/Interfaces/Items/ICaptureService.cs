@@ -17,5 +17,7 @@ namespace Services
 
         CaptureDTO GetById(int id);
 
+        Resp_Binary Decrease(long id);
+
     }
 }

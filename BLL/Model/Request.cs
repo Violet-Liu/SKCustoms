@@ -328,5 +328,18 @@ namespace Services
         public List<string> channels { get; set; }
     }
 
+    public class Layout_Random_Set
+    {
+        public int Pass { get; set; }
 
+        public float Percent { get; set; }
+
+        public bool IsOpen { get; set; }
+
+        public int ValidCount { get; set; }
+
+        public int ValidDays { get; set; }
+
+        public string Channel { get; set; } = "";
+    }
 }

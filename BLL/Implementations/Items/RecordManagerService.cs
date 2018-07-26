@@ -45,7 +45,7 @@ namespace Services
                 .DoWhen(t => !string.IsNullOrEmpty(request.RecordMGrade.NullToString().Trim()), d => records = records.Where(s => s.RecordMGrade.Equals(request.RecordMGrade)))
                 .DoWhen(t => !string.IsNullOrEmpty(request.CarColor.NullToString().Trim()), d => records = records.Where(s => s.CarColor.Equals(request.CarColor)))
                 .DoWhen(t => !string.IsNullOrEmpty(request.CarType.NullToString().Trim()), d => records = records.Where(s => s.CarType.Equals(request.CarType)))
-                .DoWhen(t => !string.IsNullOrEmpty(request.Channel.NullToString().Trim()), d => records = records.Where(s => request.Channel.Contains(s.Channel)));
+                .DoWhen(t => !string.IsNullOrEmpty(request.Channel.NullToString().Trim()), d => records = records.Where(s => s.Channel.Contains(request.Channel)));
 
             if (!string.IsNullOrEmpty(request.IsValid) && int.TryParse(request.IsValid, out int result))
             {
@@ -307,7 +307,12 @@ namespace Services
             if (limits.IsNotNull() && limits.Count > 0 && limits.Find(s => s.IsValid == 1).IsNotNull())
             {
                 response.allowVisit = true;
-                response.moduleOperaties = limits;
+                response.moduleOperaties = limits.OrderByDescending(t => t.IsValid).GroupBy(t => new { t.KeyCode, t.KeyName }).Select(s => new SysModuleOperateIndexDTO
+                {
+                    KeyCode = s.Key.KeyCode,
+                    KeyName = s.Key.KeyName,
+                    IsValid = s.Sum(x => x.IsValid),
+                }).ToList();
                 var query_parameter = new RecordManager_Query { PgIndex = 1, PgSize = request.PgSize };
                 response.query = Query(query_parameter);
             }

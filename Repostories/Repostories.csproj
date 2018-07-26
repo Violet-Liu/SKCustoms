@@ -73,6 +73,7 @@
     <Compile Include="IQueryableUnityOfWork.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelConfigurations\AlarmConfiguration.cs" />
+    <Compile Include="ModelConfigurations\CaptureBackupConfiguration.cs" />
     <Compile Include="ModelConfigurations\CaptureConfiguration.cs" />
     <Compile Include="ModelConfigurations\CarColorConfiguration.cs" />
     <Compile Include="ModelConfigurations\CarTypeConfiguration.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="ModelConfigurations\SysUserConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AlarmRepository.cs" />
+    <Compile Include="Repositories\CaptureBackupRepository.cs" />
     <Compile Include="Repositories\CaptureRepository.cs" />
     <Compile Include="Repositories\CarColorRepository.cs" />
     <Compile Include="Repositories\CarTypeRepository.cs" />

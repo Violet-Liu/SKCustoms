@@ -76,7 +76,12 @@ namespace Services
             {
                 response.allowVisit = true;
                 response.errorTypes = Enum.GetNames(typeof(SysErrorType)).ToList();
-                response.moduleOperaties = limits;
+                response.moduleOperaties = limits.OrderByDescending(t => t.IsValid).GroupBy(t => new { t.KeyCode, t.KeyName }).Select(s => new SysModuleOperateIndexDTO
+                {
+                    KeyCode = s.Key.KeyCode,
+                    KeyName = s.Key.KeyName,
+                    IsValid = s.Sum(x => x.IsValid),
+                }).ToList();
                 var query_parameter = new SysErrorLog_Query { PgIndex = 1, PgSize = 20 };
                 response.query = Query(query_parameter);
             }

@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Enums\RecordManagerTypeEnum.cs" />
     <Compile Include="Items\Alarm.cs" />
+    <Compile Include="Items\CaptureBackup.cs" />
     <Compile Include="Items\CarColor.cs" />
     <Compile Include="Items\CarType.cs" />
     <Compile Include="Items\IRepositories\IAlarmRepository.cs" />
+    <Compile Include="Items\IRepositories\ICaptureBackupRepository.cs" />
     <Compile Include="Items\IRepositories\ICaptureRepository.cs" />
     <Compile Include="Items\IRepositories\ICarColorRepository.cs" />
     <Compile Include="Items\IRepositories\ICarTypeRepository.cs" />

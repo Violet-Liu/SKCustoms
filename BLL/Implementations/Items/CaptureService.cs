@@ -17,6 +17,9 @@ namespace Services
     public class CaptureService : ICaptureService
     {
         [Dependency]
+        public ILayoutRepository _layoutRepository { get; set; }
+
+        [Dependency]
         public ICaptureRepository _repository { get; set; }
 
         [Dependency]
@@ -65,6 +68,9 @@ namespace Services
 
             var result = false;
             var guid = Guid.NewGuid().ToString();
+
+            long layoutId = 0;
+
             using (var context = new SKContext())
             {
                 using (var tran = new TransactionScope())
@@ -90,21 +96,23 @@ namespace Services
                             _messageRepository.SendMessage(capture.ToJson(), capture.Channel);
                             capture.Alarms.Add(alarm);
 
-                            if (layout.Degree > 1)
-                                --layout.Degree;
-                            if (layout.Degree == 0)
-                                layout.IsValid = 0;
+                            layoutId = layout.ID;
+                            //if (layout.Degree > 0)
+                            //    --layout.Degree;
+                            //if (layout.Degree == 0)
+                            //    layout.IsValid = 0;
                         }
 
                     }
 
-
                     context.Captures.Add(capture);
+                    var captureback = model.GetPrototype<CaptureDTO, CaptureBackup>();
+                    context.CaptureBackups.Add(captureback); 
 
                     //当车出场时，将该车的进场记录的是否出场改为已出场
                     if (model.Pass.ToInt() == 0)
                     {
-                        var in_captures = context.Captures.Where(t => t.Pass == 1 && t.WithOut == 0 && t.CarNumber == model.CarNumber);
+                        var in_captures = context.Captures.Where(t => t.CarNumber == model.CarNumber && t.Pass == 1 && t.WithOut == 0);
                         foreach (var item in in_captures)
                         {
                             item.WithOut = 1;
@@ -126,26 +134,28 @@ namespace Services
                 }
             }
 
+
+
             if (result)
             {
                 if (alert)
                 {
-                    var req_dock = new Req_Warning
-                    {
-                        WARNINGDATE = DateTime.Now.ToString("yyyy-MM-dd hh: mm:ss"),
-                        CARNO = model.CarNumber,
-                        CARTYPE = model.CarType,
-                        inout = model.Pass.Equals("1") ? "进" : "出",
-                        bayonet = model.Channel,
-                        Remark = model.Remark
+                    //    var req_dock = new Req_Warning
+                    //    {
+                    //        WARNINGDATE = DateTime.Now.ToString("yyyy-MM-dd hh: mm:ss"),
+                    //        CARNO = model.CarNumber,
+                    //        CARTYPE = model.CarType,
+                    //        inout = model.Pass.Equals("1") ? "进" : "出",
+                    //        bayonet = model.Channel,
+                    //        Remark = model.Remark
 
-                    };
-                    Docking(req_dock); //报警通知第三方
+                    //    };
+                    //    Docking(req_dock); //报警通知第三方
 
                     var alam = _alarmRepository.GetByWhere(t => t.GUID == guid).FirstOrDefault();
                     var dto = alam.ConvertoDto<Alarm, AlarmDTO>();
                     dto.LetterCode = alam.LetterCode;
-                    return new Resp_Binary_Member<AlarmDTO> { message = "该车辆已中控报警！", flag = 2, LetterCode = dto.LetterCode, entity = dto };
+                    return new Resp_Binary_Member<AlarmDTO> { message = "该车辆已中控报警！", flag = 2, LetterCode = dto.LetterCode, entity = dto, LayoutId = layoutId };
                 }
                 return new Resp_Binary_Member<AlarmDTO> { message = "添加成功", flag = 1 };
 
@@ -153,6 +163,11 @@ namespace Services
 
             return new Resp_Binary_Member<AlarmDTO> { message = "添加失败", flag = 0 };
         }
+
+
+
+
+
 
         /// <summary>
         /// 对接第三方系统
@@ -228,7 +243,7 @@ namespace Services
             records.ToMaybe()
                 .Do(d => request.Verify())
                 .DoWhen(t => !string.IsNullOrEmpty(request.CarNumber), d => records = records.Where(s => s.CarNumber.Contains(request.CarNumber.Trim())))
-                .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => request.Channel.Contains(s.Channel)))
+                .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => s.Channel.Equals(request.Channel)))
                 .DoWhen(t => !string.IsNullOrEmpty(request.ParkId), d => records = records.Where(s => s.ParkId.Contains(request.ParkId.Trim())));
 
             if (!string.IsNullOrEmpty(request.Pass) && int.TryParse(request.Pass, out int result))
@@ -270,7 +285,12 @@ namespace Services
             if (limits.IsNotNull() && limits.Count > 0 && limits.Find(s => s.IsValid == 1).IsNotNull())
             {
                 response.allowVisit = true;
-                response.moduleOperaties = limits;
+                response.moduleOperaties = limits.OrderByDescending(t => t.IsValid).GroupBy(t => new { t.KeyCode, t.KeyName }).Select(s => new SysModuleOperateIndexDTO
+                {
+                    KeyCode = s.Key.KeyCode,
+                    KeyName = s.Key.KeyName,
+                    IsValid = s.Sum(x => x.IsValid),
+                }).ToList();
                 var query_parameter = new Capture_Query { PgIndex = 1, PgSize = request.PgSize };
                 response.query = Query(query_parameter);
             }
@@ -282,6 +302,29 @@ namespace Services
             }
 
             return response;
+
+        }
+
+        public Resp_Binary Decrease(long id)
+        {
+            var layout = _layoutRepository.GetById<long>(id);
+            if (layout.IsNotNull())
+            {
+                if (layout.Degree > 0)
+                    --layout.Degree;
+                if (layout.Degree == 0)
+                    layout.IsValid = 0;
+
+                if (_layoutRepository.UnitOfWork.Commite() > 0)
+                    return Resp_Binary.Modify_Sucess;
+                else
+                    return Resp_Binary.Modify_Failed;
+            }
+            else
+            {
+                return new Resp_Binary { message = "未找到对应布控对象" };
+            }
+
 
         }
     }

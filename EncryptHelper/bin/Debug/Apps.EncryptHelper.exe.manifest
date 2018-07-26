@@ -49,19 +49,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Lht2/eV9CfByzT7bPVJnp/qEQZ2tUI4ppqA+hAg3d0o=</dsig:DigestValue>
+        <dsig:DigestValue>MaloW4YgeLkKmcQPBYk1d99Kx+1HsKnejrMnNPeWiQI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Common.dll" size="20480">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Common.dll" size="20992">
       <assemblyIdentity name="Common" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BVsTg/EwEQDvpofGFVnWs3bkmAvOfaeB2SoJM+mTYW0=</dsig:DigestValue>
+        <dsig:DigestValue>yJBHhwczwIYiGeqJDiKj4JSq0k1v9eYrFDlUppgHJ28=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
