@@ -17,3 +17,4 @@ E:\SKCustoms\Infrastruture\bin\Debug\Infrastruture.pdb
 E:\SKCustoms\Infrastruture\obj\Debug\Infrastruture.csproj.CoreCompileInputs.cache
 E:\SKCustoms\Infrastruture\obj\Debug\Infrastruture.dll
 E:\SKCustoms\Infrastruture\obj\Debug\Infrastruture.pdb
+E:\SKCustoms\Infrastruture\obj\Debug\Infrastruture.csprojAssemblyReference.cache

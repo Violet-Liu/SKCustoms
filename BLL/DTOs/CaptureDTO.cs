@@ -61,5 +61,7 @@ namespace Services
         public string AlarmContent { get; set; }
 
         public int WithOut { get; set; }
+
+        public int BeiAn { get; set; }
     }
 }

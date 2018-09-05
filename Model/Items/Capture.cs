@@ -64,6 +64,8 @@ namespace Domain
         /// </summary>
         public int WithOut { get; set; }
 
+        public int BeiAn { get; set; }
+
         public virtual ICollection<Alarm> Alarms { get; set; }
 
     }

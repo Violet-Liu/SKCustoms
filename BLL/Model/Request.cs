@@ -72,6 +72,8 @@ namespace Services
         public string RecordMGrade { get; set; }
 
         public string Channel { get; set; }
+
+        public string Type { get; set; }
     }
 
     public class Capture_Query : Base_Page_Request
@@ -87,6 +89,8 @@ namespace Services
         public int OnlyIn { get; set; }
 
         public string StayHours { get; set; }
+
+        public string Type { get; set; }
     }
 
     public class Layout_Valid_Set

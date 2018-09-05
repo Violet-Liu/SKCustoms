@@ -46,6 +46,11 @@ namespace Services
                 .DoWhen(t => !string.IsNullOrEmpty(request.CarColor.NullToString().Trim()), d => records = records.Where(s => s.CarColor.Equals(request.CarColor)))
                 .DoWhen(t => !string.IsNullOrEmpty(request.CarType.NullToString().Trim()), d => records = records.Where(s => s.CarType.Equals(request.CarType)))
                 .DoWhen(t => !string.IsNullOrEmpty(request.Channel.NullToString().Trim()), d => records = records.Where(s => s.Channel.Contains(request.Channel)));
+            //.DoWhen(t => !string.IsNullOrEmpty(request.Type.NullToString().Trim()), d => records = records.Where(s => s.Type == request.Type.ToInt()));
+
+            if (!string.IsNullOrEmpty(request.Type) && int.TryParse(request.Type, out int typeresult))
+                records = records.Where(s => s.Type == typeresult);
+
 
             if (!string.IsNullOrEmpty(request.IsValid) && int.TryParse(request.IsValid, out int result))
             {
@@ -172,11 +177,12 @@ namespace Services
             DateTime? dt = null;
             entity.CarType = model.CarType;
             entity.CarColor = model.CarColor;
-            entity.Type = model.Type.ToInt();
+            entity.Type = (int)Enum.Parse(typeof(RecordManagerTypeEnum), model.Type);
             entity.TLicense = model.TLicense;
             entity.DLicense = model.DLicense;
             entity.Driver = model.Driver;
             entity.Channel = model.Channel;
+            entity.Creater = model.Creater ?? "";
             entity.Contact = model.Contact;
             entity.Organization = model.Organization;
             entity.SysUserId = model.SysUserId.ToInt();

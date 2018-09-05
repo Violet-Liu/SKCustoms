@@ -82,5 +82,10 @@ namespace Domain
         /// 行政通道
         /// </summary>
         public string Channel { get; set; }
+
+        /// <summary>
+        /// 备案人名称
+        /// </summary>
+        public string Creater { get; set; }
     }
 }

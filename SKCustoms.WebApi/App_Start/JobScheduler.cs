@@ -28,7 +28,7 @@ namespace SKCustoms.WebApi
             IJobDetail job = JobBuilder.Create<TimeJob>().Build();
             ITrigger trigger = TriggerBuilder.Create()
                 .WithIdentity("trigger1", "group1")
-                .WithCronSchedule("0 0 1 * * ? ")    //每日8点和11点执行一次 //0 0/1 * * * ? //0 0 0,8,11,15,18,21 * * ?
+                .WithCronSchedule("0 0 0/1 * * ?  ")    //每日8点和11点执行一次 //0 0/1 * * * ? //0 0 0,8,11,15,18,21 * * ?
                 .Build();
             scheduler.ScheduleJob(job, trigger);
 
@@ -36,7 +36,7 @@ namespace SKCustoms.WebApi
             IJobDetail job2 = JobBuilder.Create<SlowJob>().Build();
             ITrigger trigger2 = TriggerBuilder.Create()
                 .WithIdentity("trigger2", "group1")
-                .WithCronSchedule("0 0 1 * * ? ")    //每日8点和11点执行一次 //0 0/1 * * * ? //0 0 0,8,11,15,18,21 * * ?
+                .WithCronSchedule("0 0 0/1 * * ?  ")    //每日8点和11点执行一次 //0 0/1 * * * ? //0 0 0,8,11,15,18,21 * * ?
                 .Build();
             scheduler.ScheduleJob(job2, trigger2);
 

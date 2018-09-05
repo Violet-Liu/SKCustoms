@@ -105,10 +105,7 @@ namespace Services
 
                     }
 
-                    context.Captures.Add(capture);
                     var captureback = model.GetPrototype<CaptureDTO, CaptureBackup>();
-                    context.CaptureBackups.Add(captureback); 
-
                     //当车出场时，将该车的进场记录的是否出场改为已出场
                     if (model.Pass.ToInt() == 0)
                     {
@@ -122,11 +119,21 @@ namespace Services
                     var recordM = context.RecordManagers.Where(t => t.CarNumber == model.CarNumber).OrderByDescending(t => t.ID).FirstOrDefault();
                     if (recordM.IsNotNull())
                     {
+                        capture.BeiAn = recordM.Type;
+                        captureback.BeiAn = recordM.Type;
                         if (model.Pass.ToInt() == 1) //进场修改备案最后一次进场时间
                             recordM.LastInTime = model.CreateTime.ToDateTime();
                         else if (model.Pass.ToInt() == 0) //出场修改备案最近一次出场时间
                             recordM.LastOutTime = model.CreateTime.ToDateTime();
                     }
+                    else
+                    {
+                        capture.BeiAn = 2;
+                        captureback.BeiAn = 2;
+                    }
+                    context.Captures.Add(capture);
+                    
+                    context.CaptureBackups.Add(captureback);
 
                     context.SaveChanges();
                     tran.Complete();
@@ -245,6 +252,12 @@ namespace Services
                 .DoWhen(t => !string.IsNullOrEmpty(request.CarNumber), d => records = records.Where(s => s.CarNumber.Contains(request.CarNumber.Trim())))
                 .DoWhen(t => !string.IsNullOrEmpty(request.Channel), d => records = records.Where(s => s.Channel.Equals(request.Channel)))
                 .DoWhen(t => !string.IsNullOrEmpty(request.ParkId), d => records = records.Where(s => s.ParkId.Contains(request.ParkId.Trim())));
+            //.DoWhen(t => !string.IsNullOrEmpty(request.Type), d => records = records.Where(s => s.BeiAn == request.Type));
+
+
+            if (!string.IsNullOrEmpty(request.Type) && int.TryParse(request.Type, out int typeresult))
+                records = records.Where(s => s.BeiAn == typeresult);
+
 
             if (!string.IsNullOrEmpty(request.Pass) && int.TryParse(request.Pass, out int result))
             {

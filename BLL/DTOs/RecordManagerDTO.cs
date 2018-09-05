@@ -76,6 +76,8 @@ namespace Services
 
         public string Channel { get; set; }
 
+        public string Creater { get; set; }
+
 
     }
 }
